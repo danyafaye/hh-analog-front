@@ -1,0 +1,8 @@
+/public
+/build
+react-app-env.d.ts
+react-table-config.d.ts
+/*.js
+src/setupProxy.js
+/**/node_modules/*
+node_modules/
