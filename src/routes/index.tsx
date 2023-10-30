@@ -3,12 +3,12 @@ import { lazy } from 'react';
 
 import { LINKS } from '@src/links';
 
-const WelcomePage = lazy(() => import('@src/pages/WelcomePage'));
+const MainPage = lazy(() => import('@src/pages/MainPage.tsx'));
 
 const ROUTES: RouteObject[] = [
   {
     path: LINKS.home,
-    element: <WelcomePage />,
+    element: <MainPage />,
   },
   {
     path: '*',

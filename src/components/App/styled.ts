@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    font-family: Inter;
+    font-family: Manrope;
   }
   :focus, :active {
     outline: none;
@@ -32,6 +32,7 @@ export const GlobalStyles = createGlobalStyle`
   #root {
     position: relative;
     z-index: 1;
+    overflow: hidden;
   }
   input::-ms-clear {
     display: none;
@@ -55,7 +56,7 @@ export const GlobalStyles = createGlobalStyle`
 `;
 
 export const AppWrapper = styled.div`
-  height: 100%;
+  height: calc(100% - 70px);
   display: flex;
   flex-direction: column;
 `;

@@ -30,7 +30,6 @@
   "extends": "./ts.paths.json",
   "include": [
     "src",
-    "./typings-custom/**/*.ts"
   ],
   "exclude": [
     "node_modules",
