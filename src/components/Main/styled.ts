@@ -33,7 +33,7 @@ export const Content = styled.div`
   display: flex;
   row-gap: 20px;
   flex-direction: column;
-  width: 100%;
+  width: calc(100% - 300px);
 `;
 
 export const SelectFilter = styled.div`
@@ -189,7 +189,7 @@ export const ContentCount = styled.div`
 
 export const ContentCards = styled.div`
   display: grid;
-  grid-template-columns: repeat(7, 382px);
+  grid-template-columns: repeat(auto-fill, 382px);
   gap: 16px;
 `;
 
@@ -289,6 +289,7 @@ export const CardCompanyButton = styled.button`
 export const ContentFilters = styled.div`
   display: flex;
   align-items: center;
+  column-gap: 12px;
   justify-content: space-between;
 `;
 
