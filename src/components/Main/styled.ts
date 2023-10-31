@@ -4,7 +4,9 @@ import { COLORS } from '@src/constants/styles.ts';
 import DollarSvg from '@assets/icons/dollar-icon.svg?react';
 import RubleSvg from '@assets/icons/ruble-icon.svg?react';
 import ArrowDownSvg from '@assets/icons/arrow-down.svg?react';
+import FavoriteActiveSvg from '@assets/icons/Union2.svg?react';
 import FavoriteCircleSvg from '@assets/icons/favorite-circle.svg?react';
+import ArrowRightSvg from '@assets/icons/Icon3.svg?react';
 
 export const Wrapper = styled.div`
   color: ${COLORS.$BLACK_100};
@@ -13,7 +15,7 @@ export const Wrapper = styled.div`
 
 export const HeaderFilters = styled.div`
   display: flex;
-  border-bottom: 2px solid ${COLORS.$PURPLE_70};
+  border-bottom: 2px solid black;
 `;
 
 export const SideFilters = styled.aside`
@@ -39,17 +41,18 @@ export const SelectFilter = styled.div`
   justify-content: space-between;
   padding: 0 20px;
   align-items: center;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   flex: 1;
-  height: 70px;
+  height: 50px;
+  border-right: 2px solid black;
 `;
 
 export const SalaryFilter = styled(SelectFilter)`
   flex-direction: column;
   align-items: flex-start;
   padding: 8px 20px;
-  border-left: 2px solid ${COLORS.$PURPLE_70};
+  border-right: none;
 `;
 
 export const FilterWrapper = styled.div`
@@ -58,31 +61,41 @@ export const FilterWrapper = styled.div`
   width: 100%;
 `;
 
+export const CurrencyWrapper = styled.div`
+  display: flex;
+  column-gap: 8px;
+`;
+
 export const FilterInput = styled.input`
   padding: 0 4px;
   width: 40%;
-  border: 1px solid black;
-  border-radius: 8px;
+  font-size: 18px;
+  border: 2px solid black;
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
 `;
 
 export const DollarIcon = styled(DollarSvg)`
-  background-color: ${COLORS.$PURPLE_70};
+  path {
+    fill: black;
+  }
+  cursor: pointer;
   width: 24px;
-  border-radius: 8px;
   height: 32px;
-  padding: 6px;
+  padding: 4px;
 `;
 export const RubleIcon = styled(RubleSvg)`
-  background-color: ${COLORS.$PURPLE_70};
-  border-radius: 8px;
+  path {
+    fill: black;
+  }
+  cursor: pointer;
   width: 24px;
+  padding: 4px;
   height: 32px;
-  padding: 6px;
 `;
 
 export const ContentWrapper = styled.div`
   display: flex;
-  height: calc(100% - 72px);
+  height: calc(100% - 50px);
   overflow-y: auto;
 `;
 
@@ -97,8 +110,8 @@ export const TitleWrapper = styled.div`
 export const ArrowDown = styled(ArrowDownSvg)``;
 
 export const Title = styled.div`
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 20px;
 `;
 
 export const FilterBlockWrapper = styled.div`
@@ -109,7 +122,7 @@ export const FilterBlockWrapper = styled.div`
 
 export const FilterTitle = styled.div`
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
 `;
 
 export const FilterItem = styled.div`
@@ -132,28 +145,30 @@ export const Reset = styled.div`
 export const FilterRadio = styled.input``;
 
 export const CardWrapper = styled.div`
-  border-radius: 20px;
-  box-shadow: 0 4px 4px 0 rgba(205, 206, 205, 0.25);
+  display: flex;
+  flex-direction: column;
   min-height: 351px;
+  -webkit-box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+  border: 2px solid black;
 `;
 
 export const CardContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1 1 auto;
   padding: 20px;
   row-gap: 20px;
-  background-color: ${COLORS.$ORANGE_90};
-  border-radius: 20px 20px 0 0;
   justify-content: space-between;
 `;
 
 export const CardFooterWrapper = styled.div`
   display: flex;
   padding: 20px;
-  background-color: ${COLORS.$BLUE_80};
   flex-direction: column;
   row-gap: 20px;
-  border-radius: 0 0 20px 20px;
+  background-color: ${COLORS.$GREEN_100};
 `;
 
 export const ContentTitleWrapper = styled.div`
@@ -162,19 +177,19 @@ export const ContentTitleWrapper = styled.div`
 `;
 
 export const ContentTitle = styled.div`
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
 `;
 
 export const ContentCount = styled.div`
   color: ${COLORS.$GRAY_90};
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
 `;
 
 export const ContentCards = styled.div`
   display: grid;
-  grid-template-columns: 382px;
+  grid-template-columns: repeat(7, 382px);
   gap: 16px;
 `;
 
@@ -197,8 +212,9 @@ export const CardTag = styled.div`
   display: flex;
   padding: 8px 16px;
   align-items: center;
-  border-radius: 8px;
   border: 1px solid black;
+  background-color: ${COLORS.$LIGHT_PURPLE_0};
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
   font-size: 14px;
 `;
 
@@ -209,25 +225,37 @@ export const CardWidgets = styled.div`
 `;
 
 export const CardName = styled.div`
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 700;
 `;
 
 export const CardDate = styled.div`
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 500;
 `;
 
 export const FavoriteCircle = styled(FavoriteCircleSvg)`
+  cursor: pointer;
   background-color: white;
-  border-radius: 20px;
   width: 40px;
   height: 40px;
-  padding: 10px;
+  padding: 8px;
+`;
+
+export const FavoriteActive = styled(FavoriteActiveSvg)`
+  cursor: pointer;
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  path {
+    fill: ${COLORS.$GREEN_100};
+  }
 `;
 
 export const CardFooterSalary = styled.div`
-  font-size: 16px;
-  color: ${COLORS.$ORANGE_90};
+  font-size: 18px;
+  font-weight: 700;
 `;
 
 export const CardFooterInfo = styled.div`
@@ -239,20 +267,66 @@ export const CardFooterInfo = styled.div`
 export const CardCompanyWrapper = styled.div``;
 
 export const CardCompanyName = styled.div`
-  font-size: 14px;
-  font-weight: 600;
-  color: ${COLORS.$ORANGE_90};
+  font-size: 16px;
+  font-weight: 700;
 `;
 
 export const CardCompanyCity = styled.div`
   font-size: 14px;
-  color: ${COLORS.$ORANGE_90};
 `;
 
 export const CardCompanyButton = styled.button`
   padding: 8px 28px;
   display: flex;
   align-items: center;
-  background-color: ${COLORS.$ORANGE_90};
-  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid black;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  background-color: white;
+`;
+
+export const ContentFilters = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const FiltersWrapper = styled.div`
+  display: flex;
+  column-gap: 12px;
+`;
+
+export const FiltersPagination = styled.div`
+  display: flex;
+  column-gap: 12px;
+  align-items: center;
+`;
+
+export const ContentFilter = styled.div`
+  display: flex;
+  border: 2px solid black;
+  padding: 8px 16px;
+  column-gap: 40px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+  align-items: center;
+`;
+
+export const ArrowRight = styled(ArrowRightSvg)`
+  height: 24px;
+`;
+
+export const PaginationBlock = styled.div<{ isActive?: boolean }>`
+  border: 2px solid black;
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+  ${({ isActive }) =>
+    isActive &&
+    `
+        background-color: ${COLORS.$GREEN_100}
+      `}
 `;

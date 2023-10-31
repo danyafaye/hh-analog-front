@@ -13,7 +13,8 @@ export const GlobalStyles = createGlobalStyle`
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    font-family: Manrope;
+    font-family: "Mabry Pro";
+    font-weight: 400;
   }
   :focus, :active {
     outline: none;
