@@ -13,7 +13,6 @@ export const Wrapper = styled.header`
   align-items: center;
   justify-content: space-between;
   border-bottom: 2px solid black;
-  background-color: ${COLORS.$LIGHT_PURPLE_10};
 `;
 
 export const Logo = styled(LogoSvg)`
@@ -28,17 +27,19 @@ export const NavMenu = styled.div`
 `;
 export const NavButton = styled.button<{ active?: boolean }>`
   background: none;
-  color: ${COLORS.$BLACK_100};
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   transition: color 0.2s ease-in-out;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
   &:hover {
-    color: ${COLORS.$GREEN_100};
+    color: ${COLORS.$PRIMARY_ORANGE};
   }
   ${({ active }) =>
     active &&
     `
-    color: ${COLORS.$GREEN_100};
+      font-weight: 500;
+      border-bottom: 2px solid ${COLORS.$PRIMARY_ORANGE};
   `}
 `;
 
@@ -50,7 +51,7 @@ export const Favorites = styled(FavoritesSvg)`
   }
   &:hover {
     path {
-      fill: ${COLORS.$GREEN_100};
+      fill: ${COLORS.$PRIMARY_ORANGE};
     }
   }
 `;
@@ -63,7 +64,7 @@ export const Notifications = styled(NotificationSvg)`
   }
   &:hover {
     path {
-      fill: ${COLORS.$GREEN_100};
+      fill: ${COLORS.$PRIMARY_ORANGE};
     }
   }
 `;
@@ -76,7 +77,7 @@ export const Profile = styled(UserSvg)`
   }
   &:hover {
     path {
-      fill: ${COLORS.$GREEN_100};
+      fill: ${COLORS.$PRIMARY_ORANGE};
     }
   }
 `;

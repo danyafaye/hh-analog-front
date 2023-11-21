@@ -9,7 +9,6 @@ import FavoriteCircleSvg from '@assets/icons/favorite-circle.svg?react';
 import ArrowRightSvg from '@assets/icons/Icon3.svg?react';
 
 export const Wrapper = styled.div`
-  color: ${COLORS.$BLACK_100};
   height: 100%;
 `;
 
@@ -95,7 +94,7 @@ export const RubleIcon = styled(RubleSvg)`
 
 export const ContentWrapper = styled.div`
   display: flex;
-  height: calc(100% - 50px);
+  height: 100%;
   overflow-y: auto;
 `;
 
@@ -139,7 +138,7 @@ export const FilterName = styled.div`
 export const Reset = styled.div`
   font-size: 14px;
   cursor: pointer;
-  color: ${COLORS.$RED_30};
+  color: ${COLORS.$SECONDARY_RED};
 `;
 
 export const FilterRadio = styled.input``;
@@ -148,10 +147,8 @@ export const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 351px;
-  -webkit-box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
-  -moz-box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
-  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
-  border: 2px solid black;
+  box-shadow: 5px 5px 0px 0px ${COLORS.$SECONDARY_LIGHT_GRAY};
+  border: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
 `;
 
 export const CardContentWrapper = styled.div`
@@ -168,21 +165,22 @@ export const CardFooterWrapper = styled.div`
   padding: 20px;
   flex-direction: column;
   row-gap: 20px;
-  background-color: ${COLORS.$GREEN_100};
+  border-radius: 0 0 4px 4px;
 `;
 
 export const ContentTitleWrapper = styled.div`
   display: flex;
   column-gap: 12px;
+  align-items: center;
 `;
 
 export const ContentTitle = styled.div`
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 600;
 `;
 
 export const ContentCount = styled.div`
-  color: ${COLORS.$GRAY_90};
+  color: ${COLORS.$SECONDARY_GRAY};
   font-size: 24px;
   font-weight: 600;
 `;
@@ -212,8 +210,10 @@ export const CardTag = styled.div`
   display: flex;
   padding: 8px 16px;
   align-items: center;
+  color: white;
+  font-weight: 500;
   border: 1px solid black;
-  background-color: ${COLORS.$LIGHT_PURPLE_0};
+  background-color: ${COLORS.$SECONDARY_GREEN};
   box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
   font-size: 14px;
 `;
@@ -232,6 +232,7 @@ export const CardName = styled.div`
 export const CardDate = styled.div`
   font-size: 16px;
   font-weight: 500;
+  color: ${COLORS.$SECONDARY_GRAY};
 `;
 
 export const FavoriteCircle = styled(FavoriteCircleSvg)`
@@ -240,6 +241,10 @@ export const FavoriteCircle = styled(FavoriteCircleSvg)`
   width: 40px;
   height: 40px;
   padding: 8px;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    color: ${COLORS.$SECONDARY_RED};
+  }
 `;
 
 export const FavoriteActive = styled(FavoriteActiveSvg)`
@@ -249,7 +254,7 @@ export const FavoriteActive = styled(FavoriteActiveSvg)`
   height: 40px;
   padding: 8px;
   path {
-    fill: ${COLORS.$GREEN_100};
+    fill: ${COLORS.$SECONDARY_RED};
   }
 `;
 
@@ -282,8 +287,9 @@ export const CardCompanyButton = styled.button`
   font-size: 14px;
   font-weight: 600;
   border: 2px solid black;
+  border-radius: 4px;
   box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
-  background-color: white;
+  background-color: ${COLORS.$PRIMARY_ORANGE};
 `;
 
 export const ContentFilters = styled.div`
@@ -319,15 +325,32 @@ export const ArrowRight = styled(ArrowRightSvg)`
 `;
 
 export const PaginationBlock = styled.div<{ isActive?: boolean }>`
-  border: 2px solid black;
-  padding: 2px 4px;
+  padding: 4px 8px;
   display: flex;
   align-items: center;
   cursor: pointer;
-  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
   ${({ isActive }) =>
     isActive &&
     `
-        background-color: ${COLORS.$GREEN_100}
+    background-color: ${COLORS.$PRIMARY_DARK_GRAY};
+    color: white;
+    box-shadow: 2px 2px 0px 0px ${COLORS.$SECONDARY_DARK_GRAY};
       `}
+`;
+
+export const Line = styled.hr`
+  height: 2px;
+  background: ${COLORS.$SECONDARY_GRAY};
+  margin: 0 auto;
+  width: 90%;
+`;
+
+export const UpperPaginationWrapper = styled.div`
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+  background: ${COLORS.$PRIMARY_LIGHT_GRAY};
+  color: ${COLORS.$PRIMARY_GRAY};
+  padding: 7px;
+  box-shadow: 4px 2px 0px 0px ${COLORS.$SECONDARY_LIGHT_GRAY};
 `;

@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
 
 import * as ST from './styled.ts';
-import IconSvg from '@assets/icons/Icon.svg?react';
+/*import IconSvg from '@assets/icons/Icon.svg?react';*/
 import { mockData } from '@components/Main/mockData.ts';
 
 const Main: FC = () => {
@@ -23,6 +23,7 @@ const Main: FC = () => {
               ))}
             </ST.CardContentTags>
           </ST.CardContentWrapper>
+          <ST.Line />
           <ST.CardFooterWrapper>
             <ST.CardFooterSalary>от 60 000 до 100 000 ₽</ST.CardFooterSalary>
             <ST.CardFooterInfo>
@@ -38,9 +39,14 @@ const Main: FC = () => {
     [mockData],
   );
 
+  /*  const onInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+    const pattern = /[A-Za-zА-Яа-яЁё]/g;
+    return (e.target.value = e.target.value.replace(pattern, ''));
+  }; //TODO: вынести это в отдельную компоненту InputNumber*/
+
   return (
     <ST.Wrapper>
-      <ST.HeaderFilters>
+      {/*      <ST.HeaderFilters>
         <ST.SelectFilter>
           Специализация
           <IconSvg />
@@ -59,11 +65,21 @@ const Main: FC = () => {
               <ST.RubleIcon />
               <ST.DollarIcon />
             </ST.CurrencyWrapper>
-            <ST.FilterInput />
-            <ST.FilterInput />
+            <ST.FilterInput
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              onInput={onInputValue}
+            />
+            <ST.FilterInput
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              onInput={onInputValue}
+            />
           </ST.FilterWrapper>
         </ST.SalaryFilter>
-      </ST.HeaderFilters>
+      </ST.HeaderFilters>*/}
       <ST.ContentWrapper>
         <ST.SideFilters>
           <ST.TitleWrapper>
@@ -166,10 +182,12 @@ const Main: FC = () => {
             </ST.FiltersWrapper>
             <ST.FiltersPagination>
               <>На странице</>
-              <ST.PaginationBlock isActive>8</ST.PaginationBlock>
-              <ST.PaginationBlock>50</ST.PaginationBlock>
-              <ST.PaginationBlock>150</ST.PaginationBlock>
-              <ST.PaginationBlock>200</ST.PaginationBlock>
+              <ST.UpperPaginationWrapper>
+                <ST.PaginationBlock isActive>8</ST.PaginationBlock>
+                <ST.PaginationBlock>50</ST.PaginationBlock>
+                <ST.PaginationBlock>150</ST.PaginationBlock>
+                <ST.PaginationBlock>200</ST.PaginationBlock>
+              </ST.UpperPaginationWrapper>
             </ST.FiltersPagination>
           </ST.ContentFilters>
           <ST.ContentCards>{renderCards}</ST.ContentCards>
