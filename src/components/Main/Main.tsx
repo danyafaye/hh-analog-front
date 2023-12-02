@@ -1,10 +1,14 @@
-import { FC, useMemo } from 'react';
+import { ChangeEvent, FC, useMemo, useState } from 'react';
 
 import * as ST from './styled.ts';
-/*import IconSvg from '@assets/icons/Icon.svg?react';*/
 import { mockData } from '@components/Main/mockData.ts';
+import { Button } from '@components/Button';
+import { Select } from '@components/Select/index.ts';
+import { SelectOptions } from '@components/Select/Select.tsx';
 
 const Main: FC = () => {
+  const [isFiltersWrapped, setIsFiltersWrapped] = useState(true); //TODO: тоже вынести в хук
+
   const renderCards = useMemo(
     () =>
       mockData.map((it) => (
@@ -31,7 +35,10 @@ const Main: FC = () => {
                 <ST.CardCompanyName>{it.companyName}</ST.CardCompanyName>
                 <ST.CardCompanyCity>{it.companyCity}</ST.CardCompanyCity>
               </ST.CardCompanyWrapper>
-              <ST.CardCompanyButton>Отклик</ST.CardCompanyButton>
+              <Button
+                onClickHandler={() => {}}
+                text="Отклик"
+              />
             </ST.CardFooterInfo>
           </ST.CardFooterWrapper>
         </ST.CardWrapper>
@@ -39,131 +46,139 @@ const Main: FC = () => {
     [mockData],
   );
 
-  /*  const onInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+  const onInputValue = (e: ChangeEvent<HTMLInputElement>) => {
     const pattern = /[A-Za-zА-Яа-яЁё]/g;
     return (e.target.value = e.target.value.replace(pattern, ''));
-  }; //TODO: вынести это в отдельную компоненту InputNumber*/
+  }; //TODO: вынести это в отдельную компоненту InputNumber
+
+  const firstFilterOptions: SelectOptions[] = [
+    {
+      value: 'dateNew',
+      label: 'По актуальности',
+    },
+    {
+      value: 'asc',
+      label: 'По возрастанию',
+    },
+    {
+      value: 'desc',
+      label: 'По убыванию',
+    },
+  ];
+
+  const secondFilterOptions: SelectOptions[] = [
+    {
+      value: 'allTime',
+      label: 'За всё время',
+    },
+    {
+      value: 'month',
+      label: 'За последний месяц',
+    },
+  ];
+
+  const scheduleOptions: SelectOptions[] = [
+    {
+      value: 'fullDay',
+      label: 'Полный день',
+    },
+    {
+      value: 'remote',
+      label: 'Удаленная работа',
+    },
+    {
+      value: 'flex',
+      label: 'Гибкий график',
+    },
+    {
+      value: 'shift',
+      label: 'Сменный график',
+    },
+  ];
+
+  const employmentTypeOptions: SelectOptions[] = [
+    {
+      value: 'fullEmployment',
+      label: 'Полная занятость',
+    },
+    {
+      value: 'partlyEmployment',
+      label: 'Частичная занятость',
+    },
+    {
+      value: 'projectWork',
+      label: 'Проектная работа',
+    },
+    {
+      value: 'internship',
+      label: 'Полная занятость',
+    },
+  ]; //TODO: вынести все в хук и добавить форму для обработки фильтров
+
+  const experienceOptions: SelectOptions[] = [
+    {
+      value: 'irrelevant',
+      label: 'Не имеет значения',
+    },
+    {
+      value: 'noExp',
+      label: 'Нет опыта',
+    },
+    {
+      value: '1-3',
+      label: 'От 1 года до 3 лет',
+    },
+    {
+      value: '3-6',
+      label: 'От 3 до 6 лет',
+    },
+    {
+      value: '6+',
+      label: 'Более 6 лет',
+    },
+  ];
+
+  const educationOptions: SelectOptions[] = [
+    {
+      value: 'notRequired',
+      label: 'Не требуется или не указано',
+    },
+    {
+      value: 'higherEd',
+      label: 'Высшее',
+    },
+    {
+      value: 'secondaryEd',
+      label: 'Среднее профессиональное',
+    },
+  ];
+
+  const gradeOptions: SelectOptions[] = [
+    {
+      value: 'internGrade',
+      label: 'Стажёр',
+    },
+    {
+      value: 'juniorGrade',
+      label: 'Junior',
+    },
+    {
+      value: 'middleGrade',
+      label: 'Middle',
+    },
+    {
+      value: 'seniorGrade',
+      label: 'Senior',
+    },
+    {
+      value: 'teamLeadGrade',
+      label: 'Team Lead',
+    },
+  ];
 
   return (
     <ST.Wrapper>
-      {/*      <ST.HeaderFilters>
-        <ST.SelectFilter>
-          Специализация
-          <IconSvg />
-        </ST.SelectFilter>
-        <ST.SelectFilter>
-          Регион
-          <IconSvg />
-        </ST.SelectFilter>
-        <ST.SelectFilter>
-          Квалификация
-          <IconSvg />
-        </ST.SelectFilter>
-        <ST.SalaryFilter>
-          <ST.FilterWrapper>
-            <ST.CurrencyWrapper>
-              <ST.RubleIcon />
-              <ST.DollarIcon />
-            </ST.CurrencyWrapper>
-            <ST.FilterInput
-              type="text"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              onInput={onInputValue}
-            />
-            <ST.FilterInput
-              type="text"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              onInput={onInputValue}
-            />
-          </ST.FilterWrapper>
-        </ST.SalaryFilter>
-      </ST.HeaderFilters>*/}
       <ST.ContentWrapper>
-        <ST.SideFilters>
-          <ST.TitleWrapper>
-            <ST.Title>Фильтр</ST.Title>
-            <ST.ArrowDown />
-          </ST.TitleWrapper>
-          <ST.FilterBlockWrapper>
-            <ST.FilterTitle>График работы</ST.FilterTitle>
-            <ST.FilterItem>
-              <ST.FilterCheck type="checkbox" />
-              <ST.FilterName>Полный день</ST.FilterName>
-            </ST.FilterItem>
-            <ST.FilterItem>
-              <ST.FilterCheck type="checkbox" />
-              <ST.FilterName>Удаленная работа</ST.FilterName>
-            </ST.FilterItem>
-            <ST.FilterItem>
-              <ST.FilterCheck type="checkbox" />
-              <ST.FilterName>Гибкий график</ST.FilterName>
-            </ST.FilterItem>
-            <ST.FilterItem>
-              <ST.FilterCheck type="checkbox" />
-              <ST.FilterName>Сменный график</ST.FilterName>
-            </ST.FilterItem>
-          </ST.FilterBlockWrapper>
-          <ST.FilterBlockWrapper>
-            <ST.FilterTitle>Тип занятости</ST.FilterTitle>
-            <ST.FilterItem>
-              <ST.FilterCheck type="checkbox" />
-              <ST.FilterName>Полная занятость</ST.FilterName>
-            </ST.FilterItem>
-            <ST.FilterItem>
-              <ST.FilterCheck type="checkbox" />
-              <ST.FilterName>Частичная занятость</ST.FilterName>
-            </ST.FilterItem>
-            <ST.FilterItem>
-              <ST.FilterCheck type="checkbox" />
-              <ST.FilterName>Проектная работа</ST.FilterName>
-            </ST.FilterItem>
-            <ST.FilterItem>
-              <ST.FilterCheck type="checkbox" />
-              <ST.FilterName>Стажировка</ST.FilterName>
-            </ST.FilterItem>
-          </ST.FilterBlockWrapper>
-          <ST.FilterBlockWrapper>
-            <ST.FilterTitle>Опыт работы</ST.FilterTitle>
-            <ST.FilterItem>
-              <ST.FilterRadio type="radio" />
-              <ST.FilterName>Не имеет значения</ST.FilterName>
-            </ST.FilterItem>
-            <ST.FilterItem>
-              <ST.FilterRadio type="radio" />
-              <ST.FilterName>Нет опыта</ST.FilterName>
-            </ST.FilterItem>
-            <ST.FilterItem>
-              <ST.FilterRadio type="radio" />
-              <ST.FilterName>От 1 года до 3 лет</ST.FilterName>
-            </ST.FilterItem>
-            <ST.FilterItem>
-              <ST.FilterRadio type="radio" />
-              <ST.FilterName>От 3 до 6 лет</ST.FilterName>
-            </ST.FilterItem>
-            <ST.FilterItem>
-              <ST.FilterRadio type="radio" />
-              <ST.FilterName>Более 6 лет</ST.FilterName>
-            </ST.FilterItem>
-          </ST.FilterBlockWrapper>
-          <ST.FilterBlockWrapper>
-            <ST.FilterTitle>Образование</ST.FilterTitle>
-            <ST.FilterItem>
-              <ST.FilterCheck type="checkbox" />
-              <ST.FilterName>Не требуется или не указано</ST.FilterName>
-            </ST.FilterItem>
-            <ST.FilterItem>
-              <ST.FilterCheck type="checkbox" />
-              <ST.FilterName>Высшее</ST.FilterName>
-            </ST.FilterItem>
-            <ST.FilterItem>
-              <ST.FilterCheck type="checkbox" />
-              <ST.FilterName>Среднее профессиональное</ST.FilterName>
-            </ST.FilterItem>
-          </ST.FilterBlockWrapper>
-          <ST.Reset>Сбросить всё</ST.Reset>
-        </ST.SideFilters>
         <ST.Content>
           <ST.ContentTitleWrapper>
             <ST.ContentTitle>Вакансий</ST.ContentTitle>
@@ -171,14 +186,20 @@ const Main: FC = () => {
           </ST.ContentTitleWrapper>
           <ST.ContentFilters>
             <ST.FiltersWrapper>
-              <ST.ContentFilter>
-                <>По соответствию</>
-                <ST.ArrowRight />
-              </ST.ContentFilter>
-              <ST.ContentFilter>
-                <>За всё время</>
-                <ST.ArrowRight />
-              </ST.ContentFilter>
+              <Select
+                defaultValue={firstFilterOptions[0]}
+                options={firstFilterOptions}
+              />
+              <Select
+                options={secondFilterOptions}
+                defaultValue={secondFilterOptions[0]}
+              />
+              <Button
+                onClickHandler={() => setIsFiltersWrapped(!isFiltersWrapped)}
+                text="Доп. фильтры"
+                styles={isFiltersWrapped ? 'unFilled' : 'default'}
+                renderIcon="filter"
+              />
             </ST.FiltersWrapper>
             <ST.FiltersPagination>
               <>На странице</>
@@ -188,8 +209,68 @@ const Main: FC = () => {
                 <ST.PaginationBlock>150</ST.PaginationBlock>
                 <ST.PaginationBlock>200</ST.PaginationBlock>
               </ST.UpperPaginationWrapper>
+              {/*TODO: вынести всю эту кашу в ButtonsLine? (ButtonsGroupLine?) надо подумать над названием*/}
             </ST.FiltersPagination>
           </ST.ContentFilters>
+          <ST.FiltersLine isWrapped={isFiltersWrapped}>
+            <ST.UpperFiltersWrapper>
+              <ST.SelectFilters>
+                <Select
+                  options={scheduleOptions}
+                  placeholder="График работы"
+                />
+                {/*TODO: когда появится бэк засунуть селекты в form*/}
+                <Select
+                  options={employmentTypeOptions}
+                  placeholder="Тип занятости"
+                />
+                <Select
+                  options={experienceOptions}
+                  placeholder="Опыт работы"
+                />
+                <Select
+                  options={educationOptions}
+                  placeholder="Образование"
+                />
+                <Select
+                  options={educationOptions}
+                  placeholder="Регион"
+                />
+                <Select
+                  options={gradeOptions}
+                  placeholder="Квалификация"
+                />
+              </ST.SelectFilters>
+              <ST.SalaryFilters>
+                <ST.FilterInput
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  onInput={onInputValue}
+                  placeholder="Нижняя граница ЗП"
+                />
+                <ST.FilterInput
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  onInput={onInputValue}
+                  placeholder="Верхняя граница ЗП" //TODO: когда запилю InputNumber компонент надо добавить абсолют иконку в правой части со знаком рубля
+                />
+              </ST.SalaryFilters>
+            </ST.UpperFiltersWrapper>
+            <ST.FilterButtonsWrapper>
+              <Button
+                onClickHandler={() => {}}
+                text="Применить"
+              />
+              <Button
+                onClickHandler={() => {}}
+                text="Сбросить"
+                styles="unFilled"
+                renderIcon="refresh"
+              />
+            </ST.FilterButtonsWrapper>
+          </ST.FiltersLine>
           <ST.ContentCards>{renderCards}</ST.ContentCards>
         </ST.Content>
       </ST.ContentWrapper>

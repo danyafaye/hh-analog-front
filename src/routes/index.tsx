@@ -8,7 +8,7 @@ const MainPage = lazy(() => import('@src/pages/MainPage.tsx'));
 const ROUTES: RouteObject[] = [
   {
     path: LINKS.home,
-    element: <MainPage />,
+    element: <MainPage />, //TODO: изменить mainpAGE на vacanciespage и поменять саму ссылку, подумать над тем какая страница будет главной при открытии приложения
   },
   {
     path: '*',

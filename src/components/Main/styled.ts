@@ -1,30 +1,11 @@
 import styled from 'styled-components';
 import { COLORS } from '@src/constants/styles.ts';
 
-import DollarSvg from '@assets/icons/dollar-icon.svg?react';
-import RubleSvg from '@assets/icons/ruble-icon.svg?react';
-import ArrowDownSvg from '@assets/icons/arrow-down.svg?react';
 import FavoriteActiveSvg from '@assets/icons/Union2.svg?react';
-import FavoriteCircleSvg from '@assets/icons/favorite-circle.svg?react';
-import ArrowRightSvg from '@assets/icons/Icon3.svg?react';
+import FavoriteCircleSvg from '@assets/icons/favorite-circle.svg?react'; //TODO: вынести в компоненту Icon и задействовать эту компоненту в main.tsx соответственно а то в падлу щас
 
 export const Wrapper = styled.div`
   height: 100%;
-`;
-
-export const HeaderFilters = styled.div`
-  display: flex;
-  border-bottom: 2px solid black;
-`;
-
-export const SideFilters = styled.aside`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  position: sticky;
-  row-gap: 28px;
-  padding: 28px 20px;
 `;
 
 export const Content = styled.div`
@@ -32,64 +13,17 @@ export const Content = styled.div`
   display: flex;
   row-gap: 20px;
   flex-direction: column;
-  width: calc(100% - 300px);
-`;
-
-export const SelectFilter = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-  align-items: center;
-  font-size: 15px;
-  font-weight: 600;
-  flex: 1;
-  height: 50px;
-  border-right: 2px solid black;
-`;
-
-export const SalaryFilter = styled(SelectFilter)`
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 8px 20px;
-  border-right: none;
-`;
-
-export const FilterWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
   width: 100%;
 `;
 
-export const CurrencyWrapper = styled.div`
-  display: flex;
-  column-gap: 8px;
-`;
-
 export const FilterInput = styled.input`
-  padding: 0 4px;
-  width: 40%;
-  font-size: 18px;
+  padding: 0 8px;
+  height: 100%;
+  max-width: 200px;
+  font-weight: 500;
+  font-size: 16px;
   border: 2px solid black;
-  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
-`;
-
-export const DollarIcon = styled(DollarSvg)`
-  path {
-    fill: black;
-  }
-  cursor: pointer;
-  width: 24px;
-  height: 32px;
-  padding: 4px;
-`;
-export const RubleIcon = styled(RubleSvg)`
-  path {
-    fill: black;
-  }
-  cursor: pointer;
-  width: 24px;
-  padding: 4px;
-  height: 32px;
+  box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 1);
 `;
 
 export const ContentWrapper = styled.div`
@@ -98,56 +32,11 @@ export const ContentWrapper = styled.div`
   overflow-y: auto;
 `;
 
-export const TitleWrapper = styled.div`
-  display: flex;
-  height: fit-content;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-`;
-
-export const ArrowDown = styled(ArrowDownSvg)``;
-
-export const Title = styled.div`
-  font-weight: 700;
-  font-size: 20px;
-`;
-
-export const FilterBlockWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 12px;
-`;
-
-export const FilterTitle = styled.div`
-  font-weight: 600;
-  font-size: 16px;
-`;
-
-export const FilterItem = styled.div`
-  display: flex;
-  column-gap: 12px;
-`;
-
-export const FilterCheck = styled.input``;
-
-export const FilterName = styled.div`
-  font-size: 14px;
-`;
-
-export const Reset = styled.div`
-  font-size: 14px;
-  cursor: pointer;
-  color: ${COLORS.$SECONDARY_RED};
-`;
-
-export const FilterRadio = styled.input``;
-
 export const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 351px;
-  box-shadow: 5px 5px 0px 0px ${COLORS.$SECONDARY_LIGHT_GRAY};
+  box-shadow: 5px 5px 0 0 ${COLORS.$SECONDARY_LIGHT_GRAY};
   border: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
 `;
 
@@ -214,7 +103,7 @@ export const CardTag = styled.div`
   font-weight: 500;
   border: 1px solid black;
   background-color: ${COLORS.$SECONDARY_GREEN};
-  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+  box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 1);
   font-size: 14px;
 `;
 
@@ -280,18 +169,6 @@ export const CardCompanyCity = styled.div`
   font-size: 14px;
 `;
 
-export const CardCompanyButton = styled.button`
-  padding: 8px 28px;
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  font-weight: 600;
-  border: 2px solid black;
-  border-radius: 4px;
-  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
-  background-color: ${COLORS.$PRIMARY_ORANGE};
-`;
-
 export const ContentFilters = styled.div`
   display: flex;
   align-items: center;
@@ -308,20 +185,6 @@ export const FiltersPagination = styled.div`
   display: flex;
   column-gap: 12px;
   align-items: center;
-`;
-
-export const ContentFilter = styled.div`
-  display: flex;
-  border: 2px solid black;
-  padding: 8px 16px;
-  column-gap: 40px;
-  cursor: pointer;
-  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
-  align-items: center;
-`;
-
-export const ArrowRight = styled(ArrowRightSvg)`
-  height: 24px;
 `;
 
 export const PaginationBlock = styled.div<{ isActive?: boolean }>`
@@ -352,5 +215,40 @@ export const UpperPaginationWrapper = styled.div`
   background: ${COLORS.$PRIMARY_LIGHT_GRAY};
   color: ${COLORS.$PRIMARY_GRAY};
   padding: 7px;
-  box-shadow: 4px 2px 0px 0px ${COLORS.$SECONDARY_LIGHT_GRAY};
+  box-shadow: 4px 2px 0 0 ${COLORS.$SECONDARY_LIGHT_GRAY};
+`;
+
+export const FiltersLine = styled.div<{ isWrapped: boolean }>`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: space-between;
+  box-shadow: 4px 4px 0 0 ${COLORS.$SECONDARY_LIGHT_GRAY};
+  border: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
+  padding: 16px;
+  ${({ isWrapped }) =>
+    isWrapped &&
+    `
+      display: none;
+    `}
+`;
+
+export const UpperFiltersWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const SelectFilters = styled.div`
+  display: flex;
+  column-gap: 12px;
+`;
+
+export const SalaryFilters = styled.div`
+  display: flex;
+  column-gap: 16px;
+`;
+
+export const FilterButtonsWrapper = styled.div`
+  display: flex;
+  column-gap: 12px;
 `;
