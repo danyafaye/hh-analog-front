@@ -1,6 +1,18 @@
 enum COLORS {
-  $white100 = '#fff',
-  $black100 = '#000',
+  $WHITE_100 = '#fff',
+  $BLACK_100 = '#000',
+  $PRIMARY_ORANGE = '#FFC900',
+  $PRIMARY_PURPLE = '#FF90E8',
+  $PRIMARY_DARK_GRAY = '#1D1D1D',
+  $PRIMARY_LIGHT_GRAY = '#f7f7f7',
+  $PRIMARY_GRAY = '#565656',
+  $SECONDARY_DARK_GRAY = '#7D7D7D',
+  $SECONDARY_GRAY = '#9d9d9d',
+  $SECONDARY_LIGHT_GRAY = '#dedede',
+  $SECONDARY_BLUE = '#90A8ED',
+  $SECONDARY_GREEN = '#23A094',
+  $SECONDARY_RED = '#FF7051',
+  $SECONDARY_YELLOW = '#F1F333',
 }
 
 export { COLORS };
