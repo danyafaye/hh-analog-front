@@ -104,6 +104,20 @@ const VacanciesProvider: FC<PropsWithChildren> = ({ children }) => {
       label: 'Среднее профессиональное',
     },
   ];
+  const regionOptions: SelectOptions[] = [
+    {
+      value: 'StPetersburg',
+      label: 'Санкт-Петербург',
+    },
+    {
+      value: 'Moscow',
+      label: 'Москва',
+    },
+    {
+      value: 'Samara',
+      label: 'Самара',
+    },
+  ];
   const gradeOptions: SelectOptions[] = [
     {
       value: 'internGrade',
@@ -139,6 +153,7 @@ const VacanciesProvider: FC<PropsWithChildren> = ({ children }) => {
         timeFilterOptions,
         isFiltersWrapped,
         changeFilterWrap,
+        regionOptions,
       }}
     >
       {children}

@@ -8,6 +8,7 @@ type VacanciesContextState = {
   employmentTypeOptions: SelectOptions[];
   experienceOptions: SelectOptions[];
   educationOptions: SelectOptions[];
+  regionOptions: SelectOptions[];
   gradeOptions: SelectOptions[];
   isFiltersWrapped: boolean;
   changeFilterWrap: () => void;

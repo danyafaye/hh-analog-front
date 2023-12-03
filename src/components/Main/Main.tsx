@@ -8,10 +8,30 @@ import { InputNumber } from '@components/InputNumber';
 import { BlocksLine } from 'src/components/BlocksLine';
 import { useVacanciesContext } from '@src/providers/VacanciesProvider';
 import { MainCard } from '@components/MainCard';
+import { useFormik } from 'formik';
+import { SelectOptions } from '@components/Select/Select.tsx';
 
 const Main: FC = () => {
   //TODO: хуевый адаптив я совсем забыл про него, нужно проработать
   //TODO: подумать над тем чтобы вынести все что связано со шрифтами в константы
+
+  const vacanciesForm = useFormik({
+    initialValues: {
+      sortFilterOption: null as SelectOptions | null,
+      timeFilterOption: null as SelectOptions | null,
+      scheduleOption: null as SelectOptions | null,
+      employmentTypeOption: null as SelectOptions | null,
+      experienceOption: null as SelectOptions | null,
+      educationOption: null as SelectOptions | null,
+      regionOption: null as SelectOptions | null,
+      gradeOption: null as SelectOptions | null,
+      priceLow: 0,
+      priceHigh: 0,
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
 
   const {
     sortFilterOptions,
@@ -20,6 +40,7 @@ const Main: FC = () => {
     educationOptions,
     experienceOptions,
     scheduleOptions,
+    regionOptions,
     gradeOptions,
     isFiltersWrapped,
     changeFilterWrap,
@@ -37,10 +58,12 @@ const Main: FC = () => {
     [mockData],
   );
 
+  console.log(vacanciesForm.values);
+
   return (
     <ST.Wrapper>
       <ST.ContentWrapper>
-        <ST.Content>
+        <ST.Content onSubmit={vacanciesForm.handleSubmit}>
           <ST.ContentTitleWrapper>
             <ST.ContentTitle>Вакансий</ST.ContentTitle>
             <ST.ContentCount>160</ST.ContentCount>
@@ -77,39 +100,61 @@ const Main: FC = () => {
                 <Select
                   options={scheduleOptions}
                   placeholder="График работы"
+                  value={vacanciesForm.values.scheduleOption}
+                  onChange={(option) => vacanciesForm.setFieldValue('scheduleOption', option)}
                 />
-                {/*TODO: когда появится бэк засунуть селекты в form*/}
                 <Select
                   options={employmentTypeOptions}
                   placeholder="Тип занятости"
+                  value={vacanciesForm.values.employmentTypeOption}
+                  onChange={(option) => vacanciesForm.setFieldValue('employmentTypeOption', option)}
                 />
                 <Select
                   options={experienceOptions}
                   placeholder="Опыт работы"
+                  value={vacanciesForm.values.experienceOption}
+                  onChange={(option) => vacanciesForm.setFieldValue('experienceOption', option)}
                 />
                 <Select
                   options={educationOptions}
                   placeholder="Образование"
+                  value={vacanciesForm.values.educationOption}
+                  onChange={(option) => vacanciesForm.setFieldValue('educationOption', option)}
                 />
                 <Select
-                  options={educationOptions}
+                  options={regionOptions}
                   placeholder="Регион"
+                  value={vacanciesForm.values.regionOption}
+                  onChange={(option) => vacanciesForm.setFieldValue('regionOption', option)}
                 />
-                {/*//TODO: запилить стороннюю апишку для подсоса регионов*/}
+                {/*//TODO: запилить стороннюю апишку для подсоса регионов (или влад сделает набор городов которые мы засунем сюда)*/}
                 <Select
                   options={gradeOptions}
                   placeholder="Квалификация"
+                  value={vacanciesForm.values.gradeOption}
+                  onChange={(option) => vacanciesForm.setFieldValue('gradeOption', option)}
                 />
               </ST.SelectFilters>
               <ST.SalaryFilters>
-                <InputNumber placeholder="Нижняя граница ЗП" />
-                <InputNumber placeholder="Верхняя граница ЗП" />
+                <InputNumber
+                  name="priceLow"
+                  onChange={vacanciesForm.handleChange}
+                  value={vacanciesForm.values.priceLow}
+                  placeholder="Нижняя граница ЗП"
+                />
+                <InputNumber
+                  name="priceHigh"
+                  onChange={vacanciesForm.handleChange}
+                  value={vacanciesForm.values.priceHigh}
+                  placeholder="Верхняя граница ЗП"
+                />
               </ST.SalaryFilters>
             </ST.UpperFiltersWrapper>
             <ST.FilterButtonsWrapper>
               <Button
                 onClickHandler={() => {}}
                 text="Применить"
+                type="submit"
               />
               <Button
                 onClickHandler={() => {}}

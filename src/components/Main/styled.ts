@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   height: 100%;
 `;
 
-export const Content = styled.div`
+export const Content = styled.form`
   padding: 28px 20px;
   display: flex;
   row-gap: 20px;

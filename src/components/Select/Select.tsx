@@ -12,7 +12,7 @@ type SelectOptions = {
 
 type Props = {
   options: SelectOptions[];
-  value?: SelectOptions[] | SelectOptions;
+  value?: SelectOptions[] | SelectOptions | null;
   onChange?: (
     value: SelectOptions[] | SingleValue<SelectOptions> | MultiValue<SelectOptions>,
   ) => void;
@@ -56,6 +56,7 @@ const Select: FC<Props> = ({ options, value, onChange, defaultValue, placeholder
               columnGap: `10px`,
               cursor: `pointer`,
               boxShadow: `3px 3px 0px 0px rgba(0, 0, 0, 1)`,
+              minWidth: '120px',
               '&:hover': { borderColor: COLORS.$PRIMARY_DARK_GRAY },
             };
           },
@@ -97,5 +98,4 @@ const Select: FC<Props> = ({ options, value, onChange, defaultValue, placeholder
 };
 
 export { Select };
-export type { Props as SelectProps };
 export type { SelectOptions };
