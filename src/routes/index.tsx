@@ -4,11 +4,15 @@ import { lazy } from 'react';
 import { LINKS } from '@src/links';
 
 const MainPage = lazy(() => import('@src/pages/MainPage.tsx'));
-
+const AuthPage = lazy(() => import('@src/pages/AuthPage.tsx'));
 const ROUTES: RouteObject[] = [
   {
     path: LINKS.home,
     element: <MainPage />, //TODO: изменить mainpAGE на vacanciespage и поменять саму ссылку, подумать над тем какая страница будет главной при открытии приложения
+  },
+  {
+    path: LINKS.auth,
+    element: <AuthPage />, //TODO: изменить mainpAGE на vacanciespage и поменять саму ссылку, подумать над тем какая страница будет главной при открытии приложения
   },
   {
     path: '*',
