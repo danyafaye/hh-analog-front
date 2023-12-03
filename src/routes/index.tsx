@@ -10,6 +10,7 @@ const ROUTES: RouteObject[] = [
     path: LINKS.home,
     element: <MainPage />, //TODO: изменить mainpAGE на vacanciespage и поменять саму ссылку, подумать над тем какая страница будет главной при открытии приложения
   },
+
   {
     path: '*',
     element: <Navigate to="/" />,
