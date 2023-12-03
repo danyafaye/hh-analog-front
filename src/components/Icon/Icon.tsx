@@ -11,7 +11,6 @@ type IconsProps = {
 };
 
 const Icon: FC<IconsProps> = ({ type, size = 'sm' }) => {
-  //TODO:нужно добавить сайзы фиксированные (ширина высота)
   const Icon = iconsDictionary[type];
 
   return (

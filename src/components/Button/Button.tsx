@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ButtonHTMLAttributes, FC } from 'react';
 
 import * as ST from './styled.ts';
 import { IconsType } from '@src/constants/iconsDictionary.ts';
@@ -14,7 +14,7 @@ export type ButtonProps = {
   onClickHandler: () => void;
   styles?: ButtonStyles;
   mainColor?: MainColors;
-};
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button: FC<ButtonProps> = ({
   text,
@@ -22,12 +22,14 @@ const Button: FC<ButtonProps> = ({
   onClickHandler,
   styles = 'default',
   mainColor = COLORS.$PRIMARY_ORANGE,
+  ...restProps
 }) => {
   return (
     <ST.ButtonWrapper
       styles={styles}
       onClick={onClickHandler}
       mainColor={mainColor}
+      {...restProps}
     >
       {renderIcon && (
         <Icon
