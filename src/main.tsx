@@ -4,13 +4,16 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { store } from '@store/root.ts';
+import { VacanciesProvider } from '@src/providers/VacanciesProvider';
 
 createRoot(document.getElementById('root')!).render(
   <Router>
     <Provider store={store}>
-      <Suspense>
-        <App />
-      </Suspense>
+      <VacanciesProvider>
+        <Suspense>
+          <App />
+        </Suspense>
+      </VacanciesProvider>
     </Provider>
   </Router>,
 );

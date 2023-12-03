@@ -5,6 +5,7 @@ import LogoSvg from '@assets/icons/union.svg?react';
 import FavoritesSvg from '@assets/icons/favorites.svg?react';
 import NotificationSvg from '@assets/icons/notification.svg?react';
 import UserSvg from '@assets/icons/user.svg?react';
+import { NavLink } from 'react-router-dom';
 
 export const Wrapper = styled.header`
   display: flex;
@@ -25,13 +26,14 @@ export const NavMenu = styled.div`
   display: flex;
   column-gap: 18px;
 `;
-export const NavButton = styled.button<{ active?: boolean }>`
+export const Link = styled(NavLink)<{ active?: boolean }>`
   background: none;
   font-size: 18px;
   font-weight: 400;
   transition: color 0.2s ease-in-out;
   padding: 4px 0;
   border-bottom: 2px solid transparent;
+  color: ${COLORS.$PRIMARY_DARK_GRAY};
   &:hover {
     color: ${COLORS.$PRIMARY_ORANGE};
   }
@@ -39,6 +41,7 @@ export const NavButton = styled.button<{ active?: boolean }>`
     active &&
     `
       font-weight: 500;
+      color: ${COLORS.$PRIMARY_ORANGE};
       border-bottom: 2px solid ${COLORS.$PRIMARY_ORANGE};
   `}
 `;
