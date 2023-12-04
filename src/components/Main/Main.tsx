@@ -1,24 +1,25 @@
-import {FC, useMemo} from 'react';
+import { FC, useMemo } from 'react';
 
 import * as ST from './styled.ts';
-import {mockData, resumeMockData} from '@components/Main/mockData.ts';
-import {Button} from '@components/Button';
-import {Select} from '@components/Select/index.ts';
-import {InputNumber} from '@components/InputNumber';
-import {BlocksLine} from 'src/components/BlocksLine';
-import {useVacanciesContext} from '@src/providers/VacanciesProvider';
-import {MainCard} from '@components/MainCard';
-import {useFormik} from 'formik';
-import {SelectOptions} from '@components/Select/Select.tsx';
-import {IMainContent, mainPageType} from "@src/constants/common";
-import {useFilterParams} from "@hooks/useFilterParams";
+import { mockData, resumeMockData } from '@components/Main/mockData.ts';
+import { Button } from '@components/Button';
+import { Select } from '@components/Select/index.ts';
+import { InputNumber } from '@components/InputNumber';
+import { BlocksLine } from 'src/components/BlocksLine';
+import { useVacanciesContext } from '@src/providers/VacanciesProvider';
+import { MainCard } from '@components/MainCard';
+import { useFormik } from 'formik';
+import { SelectOptions } from '@components/Select/Select.tsx';
+import { IMainContent, mainPageType } from '@src/constants/common';
+import { useFilterParams } from '@hooks/useFilterParams';
+import { Pagination } from '@components/Pagination';
 
 interface IMainProps {
   page: mainPageType,
   content: IMainContent
 }
 
-const Main: FC = ({page, content}: IMainProps) => {
+const Main: FC = ({ page, content }: IMainProps) => {
   //TODO: хуевый адаптив я совсем забыл про него, нужно проработать
   //TODO: подумать над тем чтобы вынести все что связано со шрифтами в константы
   const {
@@ -44,9 +45,8 @@ const Main: FC = ({page, content}: IMainProps) => {
     gradeOption,
     priceLow,
     priceHigh,
-    page: pageNumber,
-    size
-  },setFilterParams] = useFilterParams();
+    size,
+  }, setFilterParams] = useFilterParams();
   const form = useFormik({
     initialValues: {
       sortFilterOption: sortFilterOption as SelectOptions | null,
@@ -70,7 +70,7 @@ const Main: FC = ({page, content}: IMainProps) => {
     () => {
       const data = page === mainPageType.vacancies ? mockData : resumeMockData;
       return data.map((it) => {
-        return <MainCard key={it.id} cardData={it}/>;
+        return <MainCard key={it.id} cardData={it} />;
       });
     },
     [page],
@@ -98,16 +98,18 @@ const Main: FC = ({page, content}: IMainProps) => {
               />
               <Button
                 onClickHandler={changeFilterWrap}
-                text="Доп. фильтры"
+                text='Доп. фильтры'
                 styles={isFiltersWrapped ? 'unFilled' : 'default'}
-                renderIcon="filter"
+                renderIcon='filter'
                 type={'button'}
               />
             </ST.FiltersWrapper>
             <ST.FiltersPagination>
               <>На странице</>
               <BlocksLine
-                onClickHandler={(value)=>{setFilterParams({size:value})}}
+                onClickHandler={(value) => {
+                  setFilterParams({ size: value });
+                }}
                 value={size}
                 valuesArray={onPageElements}
               />
@@ -118,54 +120,54 @@ const Main: FC = ({page, content}: IMainProps) => {
               <ST.SelectFilters>
                 <Select
                   options={scheduleOptions}
-                  placeholder="График работы"
+                  placeholder='График работы'
                   value={form.values.scheduleOption}
                   onChange={(option) => form.setFieldValue('scheduleOption', option)}
                 />
                 <Select
                   options={employmentTypeOptions}
-                  placeholder="Тип занятости"
+                  placeholder='Тип занятости'
                   value={form.values.employmentTypeOption}
                   onChange={(option) => form.setFieldValue('employmentTypeOption', option)}
                 />
                 <Select
                   options={experienceOptions}
-                  placeholder="Опыт работы"
+                  placeholder='Опыт работы'
                   value={form.values.experienceOption}
                   onChange={(option) => form.setFieldValue('experienceOption', option)}
                 />
                 <Select
                   options={educationOptions}
-                  placeholder="Образование"
+                  placeholder='Образование'
                   value={form.values.educationOption}
                   onChange={(option) => form.setFieldValue('educationOption', option)}
                 />
                 <Select
                   options={regionOptions}
-                  placeholder="Регион"
+                  placeholder='Регион'
                   value={form.values.regionOption}
                   onChange={(option) => form.setFieldValue('regionOption', option)}
                 />
                 {/*//TODO: запилить стороннюю апишку для подсоса регионов (или влад сделает набор городов которые мы засунем сюда)*/}
                 <Select
                   options={gradeOptions}
-                  placeholder="Квалификация"
+                  placeholder='Квалификация'
                   value={form.values.gradeOption}
                   onChange={(option) => form.setFieldValue('gradeOption', option)}
                 />
               </ST.SelectFilters>
               <ST.SalaryFilters>
                 <InputNumber
-                  name="priceLow"
+                  name='priceLow'
                   onChange={form.handleChange}
                   value={form.values.priceLow}
-                  placeholder="Нижняя граница ЗП"
+                  placeholder='Нижняя граница ЗП'
                 />
                 <InputNumber
-                  name="priceHigh"
+                  name='priceHigh'
                   onChange={form.handleChange}
                   value={form.values.priceHigh}
-                  placeholder="Верхняя граница ЗП"
+                  placeholder='Верхняя граница ЗП'
                 />
               </ST.SalaryFilters>
             </ST.UpperFiltersWrapper>
@@ -173,8 +175,8 @@ const Main: FC = ({page, content}: IMainProps) => {
               <Button
                 onClickHandler={() => {
                 }}
-                text="Применить"
-                type="submit"
+                text='Применить'
+                type='submit'
               />
               <Button
                 onClickHandler={() => {
@@ -182,17 +184,18 @@ const Main: FC = ({page, content}: IMainProps) => {
                   form.resetForm();
                 }}
                 type={'reset'}
-                text="Сбросить"
-                styles="unFilled"
-                renderIcon="refresh"
+                text='Сбросить'
+                styles='unFilled'
+                renderIcon='refresh'
               />
             </ST.FilterButtonsWrapper>
           </ST.FiltersLine>
         </ST.Content>
         <ST.ContentCards>{renderCards}</ST.ContentCards>
+        <Pagination totalCount={renderCards.length}/>
       </ST.ContentWrapper>
     </ST.Wrapper>
   );
 };
 
-export {Main};
+export { Main };

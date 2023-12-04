@@ -48,7 +48,7 @@ const useFilterParams = () => {
       gradeOption: gradeOptions.find((option) => option.value === gradeOption) || null,
       priceLow,
       priceHigh,
-      page: page || 1,
+      page: page || '1',
       size: size || '8'
     };
   }, [search]);
