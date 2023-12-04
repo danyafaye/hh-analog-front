@@ -11,7 +11,7 @@ export type MainColors = COLORS.$PRIMARY_ORANGE | COLORS.$SECONDARY_RED;
 export type ButtonProps = {
   text: string;
   renderIcon?: IconsType;
-  onClickHandler: () => void;
+  onClickHandler?: () => void;
   styles?: ButtonStyles;
   mainColor?: MainColors;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
