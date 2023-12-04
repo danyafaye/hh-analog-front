@@ -4,7 +4,9 @@ import { lazy } from 'react';
 import { LINKS } from '@src/links';
 
 const MainPage = lazy(() => import('@src/pages/MainPage.tsx'));
+const ResumePage = lazy(() => import('@src/pages/ResumePage.tsx'));
 const DashboardPage = lazy(() => import('@src/pages/DashboardPage.tsx'));
+const AuthPage = lazy(() => import('@src/pages/AuthPage.tsx'));
 
 const ROUTES: RouteObject[] = [
   {
@@ -12,8 +14,16 @@ const ROUTES: RouteObject[] = [
     element: <MainPage />, //TODO: изменить mainpAGE на vacanciespage и поменять саму ссылку, подумать над тем какая страница будет главной при открытии приложения
   },
   {
+    path: LINKS.resume,
+    element: <ResumePage/>
+  },
+  {
     path: LINKS.dashboard,
     element: <DashboardPage />,
+  },
+  {
+    path: LINKS.auth,
+    element: <AuthPage />, //TODO: изменить mainpAGE на vacanciespage и поменять саму ссылку, подумать над тем какая страница будет главной при открытии приложения
   },
   {
     path: '*',

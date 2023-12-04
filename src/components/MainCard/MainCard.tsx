@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
 import * as ST from './styled.ts';
-import { CardProps } from '@components/Main/mockData.ts';
+import {CompanyCardProps, ResumeCardProps} from '@components/Main/mockData.ts';
 import { getPriceString } from '@utils/common.ts';
 import { Button } from '@components/Button';
 
 type MainCardProps = {
-  cardData: CardProps;
+  cardData: CompanyCardProps | ResumeCardProps;
 };
 
 const MainCard: FC<MainCardProps> = ({ cardData }) => {
@@ -21,22 +21,22 @@ const MainCard: FC<MainCardProps> = ({ cardData }) => {
           <ST.CardName>{cardData.cardName}</ST.CardName>
         </ST.CardContentHeader>
         <ST.CardContentTags>
-          {cardData.cardTags.map((it) => (
-            <ST.CardTag>{it}</ST.CardTag>
+          {cardData.cardTags.map((it,index) => (
+            <ST.CardTag key={index}>{it}</ST.CardTag>
           ))}
         </ST.CardContentTags>
       </ST.CardContentWrapper>
       <ST.Line />
       <ST.CardFooterWrapper>
-        <ST.CardFooterSalary>{getPriceString(cardData.cardPrice)}</ST.CardFooterSalary>
+        <ST.CardFooterSalary>{cardData.cardPrice.length ? getPriceString(cardData.cardPrice) : 'Не указано'}</ST.CardFooterSalary>
         <ST.CardFooterInfo>
-          <ST.CardCompanyWrapper>
-            <ST.CardCompanyName>{cardData.companyName}</ST.CardCompanyName>
-            <ST.CardCompanyCity>{cardData.companyCity}</ST.CardCompanyCity>
-          </ST.CardCompanyWrapper>
+          <ST.CardSubjectWrapper>
+            <ST.CardSubjectName>{'companyName' in cardData ?  cardData.companyName : cardData.fullName}</ST.CardSubjectName>
+            <ST.CardSubjectCity>{cardData.city}</ST.CardSubjectCity>
+          </ST.CardSubjectWrapper>
           <Button
             onClickHandler={() => {}}
-            text="Отклик"
+            text={'companyName' in cardData ? "Отклик" : "Пригласить"}
           />
         </ST.CardFooterInfo>
       </ST.CardFooterWrapper>
