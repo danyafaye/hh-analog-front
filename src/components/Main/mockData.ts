@@ -1,87 +1,186 @@
 type CardProps = {
+  id: string;
   createdAt: string;
   favorite: boolean;
   cardName: string;
   cardTags: string[];
   cardPrice: string[];
-  companyName: string;
-  companyCity: string;
+  city: string;
 };
 
-const mockData: CardProps[] = [
+type CompanyCardProps = CardProps & {
+  companyName: string;
+};
+
+type ResumeCardProps = CardProps & {
+  fullName: string;
+}
+
+const mockData: CompanyCardProps[] = [
   {
+    id: '1',
     createdAt: '26.09.23',
     favorite: true,
     cardName: 'Backend-разработчик PHP (Bitrix framework)',
     cardTags: ['Senior', 'Опыт: 3-6 лет', 'Удаленная работа', 'Полная занятость'],
     cardPrice: ['60000', '100000'],
     companyName: 'Names',
-    companyCity: 'Москва',
+    city: 'Москва',
   },
   {
+    id: '2',
     createdAt: '24.10.23',
     favorite: false,
     cardName: 'Middle/Senior Backend разработчик (Python)',
     cardTags: ['Middle', 'Senior', 'Опыт: 3-6 лет', 'Удаленная работа', 'Полная занятость'],
     cardPrice: ['180000', ''],
     companyName: 'WEBLY.LL',
-    companyCity: 'Санкт-Петербург',
+    city: 'Санкт-Петербург',
   },
   {
+    id: '3',
     createdAt: '20.10.23',
     favorite: false,
     cardName: 'HTML-Верстальщик',
     cardTags: ['Middle', 'Опыт: 1-3 лет', 'Удаленная работа', 'Полная занятость'],
     cardPrice: ['', '100000'],
     companyName: 'Lazyrit Analytics',
-    companyCity: 'Вологда',
+    city: 'Вологда',
   },
   {
+    id: '4',
     createdAt: '18.10.23',
     favorite: true,
     cardName: 'Frontend-разработчик',
     cardTags: ['Middle', 'Опыт: 1-3 лет', 'Удаленная работа', 'Полная занятость'],
     cardPrice: ['', '100000'],
     companyName: 'IT-TI Company',
-    companyCity: 'Новгород',
+    city: 'Новгород',
   },
   {
+    id: '5',
     createdAt: '29.10.23',
     favorite: false,
     cardName: 'Фуллстек веб-разработчик / Web Developer',
     cardTags: ['Senior', 'Опыт: 3-6 лет', 'Удаленная работа', 'Полная занятость'],
     cardPrice: ['200000', ''],
     companyName: 'DragonRu',
-    companyCity: 'Москва',
+    city: 'Москва',
   },
   {
+    id: '6',
     createdAt: '15.10.23',
     favorite: true,
     cardName: 'PHP разработчик в веб-студию',
     cardTags: ['Middle', 'Junior', 'Опыт: 3-6 лет', 'Удаленная работа', 'Полная занятость'],
     cardPrice: ['60000', '100000'],
     companyName: 'ITECHNOLOGY',
-    companyCity: 'Саратов',
+    city: 'Саратов',
   },
   {
+    id: '7',
     createdAt: '26.09.23',
     favorite: false,
     cardName: 'Backend программист',
     cardTags: ['Junior', 'Middle', 'Опыт: 1-3 лет', 'Удаленная работа', 'Полная занятость'],
     cardPrice: ['', '50000'],
     companyName: 'IT RUSSIA',
-    companyCity: 'Камышин',
+    city: 'Камышин',
   },
   {
+    id: '8',
     createdAt: '26.09.23',
     favorite: true,
     cardName: 'Fullstack разработчик Bitrix | Wordpress',
     cardTags: ['Middle', 'Опыт: 1-3 лет', 'Удаленная работа', 'Полная занятость'],
     cardPrice: ['55000', '70000'],
     companyName: 'REDFOX IT Company',
-    companyCity: 'Ершов',
+    city: 'Ершов',
   },
 ];
 
-export { mockData };
-export type { CardProps };
+const resumeMockData: ResumeCardProps[] = [
+  {
+    id: '1',
+    createdAt: '26.09.23',
+    favorite: true,
+    cardName: 'Backend-разработчик PHP (Bitrix framework)',
+    cardTags: ['Senior', 'Опыт: 3-6 лет', 'Удаленная работа', 'Полная занятость'],
+    cardPrice: [],
+    fullName: 'Игнатьев А. А.',
+    city: 'Москва',
+  },
+  {
+    id: '2',
+    createdAt: '24.10.23',
+    favorite: false,
+    cardName: 'Middle/Senior Backend разработчик (Python)',
+    cardTags: ['Middle', 'Senior', 'Опыт: 3-6 лет', 'Удаленная работа', 'Полная занятость'],
+    cardPrice: ['180000', ''],
+    fullName: 'Иванов А. А.',
+    city: 'Москва',
+  },
+  {
+    id: '3',
+    createdAt: '20.10.23',
+    favorite: false,
+    cardName: 'HTML-Верстальщик',
+    cardTags: ['Middle', 'Опыт: 1-3 лет', 'Удаленная работа', 'Полная занятость'],
+    cardPrice: ['', '100000'],
+    fullName: 'Попов А. А.',
+    city: 'Москва',
+  },
+  {
+    id: '4',
+    createdAt: '18.10.23',
+    favorite: true,
+    cardName: 'Frontend-разработчик',
+    cardTags: ['Middle', 'Опыт: 1-3 лет', 'Удаленная работа', 'Полная занятость'],
+    cardPrice: ['', '100000'],
+    fullName: 'Орлов К. А.',
+    city: 'Москва',
+  },
+  {
+    id: '5',
+    createdAt: '29.10.23',
+    favorite: false,
+    cardName: 'Фуллстек веб-разработчик / Web Developer',
+    cardTags: ['Senior', 'Опыт: 3-6 лет', 'Удаленная работа', 'Полная занятость'],
+    cardPrice: ['200000', ''],
+    fullName: 'Федоров А. А.',
+    city: 'Москва',
+  },
+  {
+    id: '6',
+    createdAt: '15.10.23',
+    favorite: true,
+    cardName: 'PHP разработчик в веб-студию',
+    cardTags: ['Middle', 'Junior', 'Опыт: 3-6 лет', 'Удаленная работа', 'Полная занятость'],
+    cardPrice: ['60000', '100000'],
+    fullName: 'Конюх А. А.',
+    city: 'Москва',
+  },
+  {
+    id: '7',
+    createdAt: '26.09.23',
+    favorite: false,
+    cardName: 'Backend программист',
+    cardTags: ['Junior', 'Middle', 'Опыт: 1-3 лет', 'Удаленная работа', 'Полная занятость'],
+    cardPrice: ['', '50000'],
+    fullName: 'Игнатьев А. А.',
+    city: 'Москва',
+  },
+  {
+    id: '8',
+    createdAt: '26.09.23',
+    favorite: true,
+    cardName: 'Fullstack разработчик Bitrix | Wordpress',
+    cardTags: ['Middle', 'Опыт: 1-3 лет', 'Удаленная работа', 'Полная занятость'],
+    cardPrice: ['55000', '70000'],
+    fullName: 'Игнатьев А. А.',
+    city: 'Москва',
+  },
+];
+
+export { mockData, resumeMockData};
+export type { CardProps, CompanyCardProps, ResumeCardProps };

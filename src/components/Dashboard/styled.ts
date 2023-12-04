@@ -14,7 +14,6 @@ export const Content = styled.form`
 
 export const ContentWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   height: 100%;
   overflow-y: auto;
 `;
