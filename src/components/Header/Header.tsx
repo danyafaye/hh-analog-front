@@ -23,8 +23,8 @@ const Header: FC = () => {
           Вакансии
         </ST.Link>
         <ST.Link
-          to={LINKS.rezume}
-          active={pathname === LINKS.rezume}
+          to={LINKS.resume}
+          active={pathname === LINKS.resume}
         >
           Резюме
         </ST.Link>

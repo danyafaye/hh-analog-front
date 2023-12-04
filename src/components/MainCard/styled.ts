@@ -87,14 +87,14 @@ export const CardFooterInfo = styled.div`
   align-items: center;
 `;
 
-export const CardCompanyWrapper = styled.div``;
+export const CardSubjectWrapper = styled.div``;
 
-export const CardCompanyName = styled.div`
+export const CardSubjectName = styled.div`
   font-size: 16px;
   font-weight: 700;
 `;
 
-export const CardCompanyCity = styled.div`
+export const CardSubjectCity = styled.div`
   font-size: 14px;
 `;
 

@@ -1,7 +1,7 @@
-export type LinkTypes = 'home' | 'dashboard' | 'rezume';
+export type LinkTypes = 'home' | 'dashboard' | 'resume';
 
 export const LINKS: Record<LinkTypes, string> = {
   home: '/',
   dashboard: '/dashboard',
-  rezume: '/rezume',
+  resume: '/resume',
 };
