@@ -3,7 +3,7 @@ import { FC } from 'react';
 import * as ST from './styled.ts';
 import { iconsDictionary, IconsType } from '@src/constants/iconsDictionary.ts';
 
-export type IconsSize = 'sm';
+export type IconsSize = 'sm' | 'md';
 
 type IconsProps = {
   type: IconsType;

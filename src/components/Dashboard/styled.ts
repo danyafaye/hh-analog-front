@@ -75,23 +75,8 @@ export const ProfileActionsContainer = styled(ProfileBlock)`
   background: ${COLORS.$PRIMARY_LIGHT_GRAY};
   border: 1px solid ${COLORS.$PRIMARY_DARK_GRAY};
   padding: 0 8px;
-`;
-
-export const EditAction = styled(EditSvg)`
-  height: 19px;
-  width: 19px;
-  cursor: pointer;
-  path {
-    fill: ${COLORS.$BLACK_100};
-  }
-`;
-
-export const DeleteAction = styled(DeleteSvg)`
-  height: 19px;
-  width: 19px;
-  cursor: pointer;
-  path {
-    fill: ${COLORS.$BLACK_100};
+  div {
+    cursor: pointer;
   }
 `;
 
@@ -129,11 +114,6 @@ export const ProfileLocationAddress = styled.div`
   font-weight: 400;
 `;
 
-export const LocationIcon = styled(AddressSvg)`
-  height: 25px;
-  width: 25px;
-`;
-
 export const ProfileTagsContainer = styled(ProfileBlock)`
   gap: 8px;
   flex-wrap: wrap;
@@ -155,15 +135,17 @@ export const ProfileTag = styled.div`
 
 export const ProfileFooter = styled(ProfileBlock)`
   margin-top: auto;
+  gap: 12px;
 `;
 
 export const ProfileLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0 10px;
+  gap: 12px;
   height: 40px;
+  color: ${COLORS.$PRIMARY_GRAY};
+  background: ${COLORS.$PRIMARY_LIGHT_GRAY};
+  border: 1px solid ${COLORS.$PRIMARY_DARK_GRAY};
 `;
-
-export const TelegramIcon = styled;
-
-export const GithubIcon = styled;
-
-export const GoogleIcon = styled;

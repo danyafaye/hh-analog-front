@@ -4,6 +4,7 @@ import * as ST from './styled.ts';
 import { MainCard } from '@components/MainCard';
 import { mockData as vacanticesMockData } from '@components/Main/mockData.ts';
 import { mockData as profileMockData } from '@components/Dashboard/mockData.ts';
+import { Icon } from '@components/Icon/Icon.tsx';
 
 const Dashboard: FC = () => {
   const renderCards = useMemo(
@@ -35,8 +36,14 @@ const Dashboard: FC = () => {
         <ST.ProfileContainer>
           <ST.ProfileContent>
             <ST.ProfileActionsContainer>
-              <ST.EditAction />
-              <ST.DeleteAction />
+              <Icon
+                size="md"
+                type={'edit'}
+              />
+              <Icon
+                size="md"
+                type={'delete'}
+              />
             </ST.ProfileActionsContainer>
             <ST.ProfileBlock>
               <ST.ProfileAvatar
@@ -52,12 +59,35 @@ const Dashboard: FC = () => {
             </ST.ProfileBlock>
             <ST.ProfileBlock>
               <ST.ProfileLocationContainer>
-                <ST.LocationIcon />
+                <Icon
+                  size="md"
+                  type={'address'}
+                />
                 <ST.ProfileLocationAddress>Россия, Москва</ST.ProfileLocationAddress>
               </ST.ProfileLocationContainer>
             </ST.ProfileBlock>
             <ST.ProfileTagsContainer>{renderProfileTags}</ST.ProfileTagsContainer>
-            <ST.ProfileFooter>линки</ST.ProfileFooter>
+            <ST.ProfileFooter>
+              <ST.ProfileLink to={'/'}>
+                <Icon
+                  size="md"
+                  type={'telegram'}
+                />
+                @petr762008
+              </ST.ProfileLink>
+              <ST.ProfileLink to={'/'}>
+                <Icon
+                  size="md"
+                  type={'github'}
+                />
+              </ST.ProfileLink>
+              <ST.ProfileLink to={'/'}>
+                <Icon
+                  size="md"
+                  type={'google'}
+                />
+              </ST.ProfileLink>
+            </ST.ProfileFooter>
           </ST.ProfileContent>
         </ST.ProfileContainer>
       </ST.ProfileWrapper>
