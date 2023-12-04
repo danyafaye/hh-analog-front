@@ -3,9 +3,16 @@ import { FC } from 'react';
 import * as ST from './styled.ts';
 import { LINKS } from '@src/links';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 const Header: FC = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate()
+
+  const redirectAuth = () => {
+    navigate(LINKS.auth)
+  }
+
   return (
     <ST.Wrapper>
       <ST.Logo />
@@ -32,7 +39,7 @@ const Header: FC = () => {
       <ST.NavMenu>
         <ST.Favorites />
         <ST.Notifications />
-        <ST.Profile />
+        <ST.Profile onClick={redirectAuth}/>
       </ST.NavMenu>
     </ST.Wrapper>
   );
