@@ -15,8 +15,8 @@ import { useFilterParams } from '@hooks/useFilterParams';
 import { Pagination } from '@components/Pagination';
 
 interface IMainProps {
-  page: mainPageType,
-  content: IMainContent
+  page: mainPageType;
+  content: IMainContent;
 }
 
 const Main: FC = ({ page, content }: IMainProps) => {
@@ -34,19 +34,22 @@ const Main: FC = ({ page, content }: IMainProps) => {
     isFiltersWrapped,
     changeFilterWrap,
   } = useVacanciesContext();
-  const [{
-    sortFilterOption,
-    timeFilterOption,
-    scheduleOption,
-    employmentTypeOption,
-    experienceOption,
-    educationOption,
-    regionOption,
-    gradeOption,
-    priceLow,
-    priceHigh,
-    size,
-  }, setFilterParams] = useFilterParams();
+  const [
+    {
+      sortFilterOption,
+      timeFilterOption,
+      scheduleOption,
+      employmentTypeOption,
+      experienceOption,
+      educationOption,
+      regionOption,
+      gradeOption,
+      priceLow,
+      priceHigh,
+      size,
+    },
+    setFilterParams,
+  ] = useFilterParams();
   const form = useFormik({
     initialValues: {
       sortFilterOption: sortFilterOption as SelectOptions | null,
@@ -66,133 +69,134 @@ const Main: FC = ({ page, content }: IMainProps) => {
   });
   const onPageElements = ['8', '50', '150', '200'];
 
-  const renderCards = useMemo(
-    () => {
-      const data = page === mainPageType.vacancies ? mockData : resumeMockData;
-      return data.map((it) => {
-        return <MainCard key={it.id} cardData={it} />;
-      });
-    },
-    [page],
-  );
-
-  //console.log(form.values);
+  const renderCards = useMemo(() => {
+    const data = page === mainPageType.vacancies ? mockData : resumeMockData;
+    return data.map((it) => {
+      return (
+        <MainCard
+          key={it.id}
+          cardData={it}
+        />
+      );
+    });
+  }, [page]);
 
   return (
     <ST.Wrapper>
       <ST.ContentWrapper>
-        <ST.Content onSubmit={form.handleSubmit}>
-          <ST.ContentTitleWrapper>
-            <ST.ContentTitle>{content.contentTitle}</ST.ContentTitle>
-            <ST.ContentCount>160</ST.ContentCount>
-          </ST.ContentTitleWrapper>
-          <ST.ContentFilters>
-            <ST.FiltersWrapper>
-              <Select
-                defaultValue={sortFilterOptions[0]}
-                options={sortFilterOptions}
-              />
-              <Select
-                options={timeFilterOptions}
-                defaultValue={timeFilterOptions[0]}
-              />
-              <Button
-                onClickHandler={changeFilterWrap}
-                text='Доп. фильтры'
-                styles={isFiltersWrapped ? 'unFilled' : 'default'}
-                renderIcon='filter'
-                type={'button'}
-              />
-            </ST.FiltersWrapper>
-            <ST.FiltersPagination>
-              <>На странице</>
-              <BlocksLine
-                onClickHandler={(value) => {
-                  setFilterParams({ size: value });
-                }}
-                value={size}
-                valuesArray={onPageElements}
-              />
-            </ST.FiltersPagination>
-          </ST.ContentFilters>
-          <ST.FiltersLine isWrapped={isFiltersWrapped}>
-            <ST.UpperFiltersWrapper>
-              <ST.SelectFilters>
+        <ST.Content>
+          <ST.ContentForm onSubmit={form.handleSubmit}>
+            <ST.ContentTitleWrapper>
+              <ST.ContentTitle>{content.contentTitle}</ST.ContentTitle>
+              <ST.ContentCount>160</ST.ContentCount>
+            </ST.ContentTitleWrapper>
+            <ST.ContentFilters>
+              <ST.FiltersWrapper>
                 <Select
-                  options={scheduleOptions}
-                  placeholder='График работы'
-                  value={form.values.scheduleOption}
-                  onChange={(option) => form.setFieldValue('scheduleOption', option)}
+                  defaultValue={sortFilterOptions[0]}
+                  options={sortFilterOptions}
                 />
                 <Select
-                  options={employmentTypeOptions}
-                  placeholder='Тип занятости'
-                  value={form.values.employmentTypeOption}
-                  onChange={(option) => form.setFieldValue('employmentTypeOption', option)}
+                  options={timeFilterOptions}
+                  defaultValue={timeFilterOptions[0]}
                 />
-                <Select
-                  options={experienceOptions}
-                  placeholder='Опыт работы'
-                  value={form.values.experienceOption}
-                  onChange={(option) => form.setFieldValue('experienceOption', option)}
+                <Button
+                  onClickHandler={changeFilterWrap}
+                  text="Доп. фильтры"
+                  styles={isFiltersWrapped ? 'unFilled' : 'default'}
+                  renderIcon="filter"
+                  type={'button'}
                 />
-                <Select
-                  options={educationOptions}
-                  placeholder='Образование'
-                  value={form.values.educationOption}
-                  onChange={(option) => form.setFieldValue('educationOption', option)}
+              </ST.FiltersWrapper>
+              <ST.FiltersPagination>
+                <>На странице</>
+                <BlocksLine
+                  onClickHandler={(value) => {
+                    setFilterParams({ size: value });
+                  }}
+                  value={size}
+                  valuesArray={onPageElements}
                 />
-                <Select
-                  options={regionOptions}
-                  placeholder='Регион'
-                  value={form.values.regionOption}
-                  onChange={(option) => form.setFieldValue('regionOption', option)}
+              </ST.FiltersPagination>
+            </ST.ContentFilters>
+            <ST.FiltersLine isWrapped={isFiltersWrapped}>
+              <ST.UpperFiltersWrapper>
+                <ST.SelectFilters>
+                  <Select
+                    options={scheduleOptions}
+                    placeholder="График работы"
+                    value={form.values.scheduleOption}
+                    onChange={(option) => form.setFieldValue('scheduleOption', option)}
+                  />
+                  <Select
+                    options={employmentTypeOptions}
+                    placeholder="Тип занятости"
+                    value={form.values.employmentTypeOption}
+                    onChange={(option) => form.setFieldValue('employmentTypeOption', option)}
+                  />
+                  <Select
+                    options={experienceOptions}
+                    placeholder="Опыт работы"
+                    value={form.values.experienceOption}
+                    onChange={(option) => form.setFieldValue('experienceOption', option)}
+                  />
+                  <Select
+                    options={educationOptions}
+                    placeholder="Образование"
+                    value={form.values.educationOption}
+                    onChange={(option) => form.setFieldValue('educationOption', option)}
+                  />
+                  <Select
+                    options={regionOptions}
+                    placeholder="Регион"
+                    value={form.values.regionOption}
+                    onChange={(option) => form.setFieldValue('regionOption', option)}
+                  />
+                  {/*//TODO: запилить стороннюю апишку для подсоса регионов (или влад сделает набор городов которые мы засунем сюда)*/}
+                  <Select
+                    options={gradeOptions}
+                    placeholder="Квалификация"
+                    value={form.values.gradeOption}
+                    onChange={(option) => form.setFieldValue('gradeOption', option)}
+                  />
+                </ST.SelectFilters>
+                <ST.SalaryFilters>
+                  <InputNumber
+                    name="priceLow"
+                    onChange={form.handleChange}
+                    value={form.values.priceLow}
+                    placeholder="Нижняя граница ЗП"
+                  />
+                  <InputNumber
+                    name="priceHigh"
+                    onChange={form.handleChange}
+                    value={form.values.priceHigh}
+                    placeholder="Верхняя граница ЗП"
+                  />
+                </ST.SalaryFilters>
+              </ST.UpperFiltersWrapper>
+              <ST.FilterButtonsWrapper>
+                <Button
+                  onClickHandler={() => {}}
+                  text="Применить"
+                  type="submit"
                 />
-                {/*//TODO: запилить стороннюю апишку для подсоса регионов (или влад сделает набор городов которые мы засунем сюда)*/}
-                <Select
-                  options={gradeOptions}
-                  placeholder='Квалификация'
-                  value={form.values.gradeOption}
-                  onChange={(option) => form.setFieldValue('gradeOption', option)}
+                <Button
+                  onClickHandler={() => {
+                    setFilterParams(null);
+                    form.resetForm();
+                  }}
+                  type={'reset'}
+                  text="Сбросить"
+                  styles="unFilled"
+                  renderIcon="refresh"
                 />
-              </ST.SelectFilters>
-              <ST.SalaryFilters>
-                <InputNumber
-                  name='priceLow'
-                  onChange={form.handleChange}
-                  value={form.values.priceLow}
-                  placeholder='Нижняя граница ЗП'
-                />
-                <InputNumber
-                  name='priceHigh'
-                  onChange={form.handleChange}
-                  value={form.values.priceHigh}
-                  placeholder='Верхняя граница ЗП'
-                />
-              </ST.SalaryFilters>
-            </ST.UpperFiltersWrapper>
-            <ST.FilterButtonsWrapper>
-              <Button
-                onClickHandler={() => {
-                }}
-                text='Применить'
-                type='submit'
-              />
-              <Button
-                onClickHandler={() => {
-                  setFilterParams(null);
-                  form.resetForm();
-                }}
-                type={'reset'}
-                text='Сбросить'
-                styles='unFilled'
-                renderIcon='refresh'
-              />
-            </ST.FilterButtonsWrapper>
-          </ST.FiltersLine>
+              </ST.FilterButtonsWrapper>
+            </ST.FiltersLine>
+          </ST.ContentForm>
+          <ST.ContentCards>{renderCards}</ST.ContentCards>
         </ST.Content>
-        <ST.ContentCards>{renderCards}</ST.ContentCards>
-        <Pagination totalCount={renderCards.length}/>
+        <Pagination totalCount={renderCards.length} />
       </ST.ContentWrapper>
     </ST.Wrapper>
   );

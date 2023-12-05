@@ -16,16 +16,21 @@ export const AuthForm = styled.div`
   display: flex;
   flex-direction: column;
   padding: 55px;
-  gap: 96px;
-  box-shadow: 0 7px 15px rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
+  gap: 64px;
   overflow-y: auto;
-  width: 36.6%;
+  width: 40%;
   background-color: ${COLORS.$WHITE_100};
+  box-shadow: 5px 5px 0 0 ${COLORS.$SECONDARY_LIGHT_GRAY};
+  border: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
 `;
 
 export const ControlWrapper = styled.div`
   display: flex;
-  gap: 28px;
+  gap: 24px;
   flex-direction: column;
+`;
+
+export const BottomWrapper = styled.div`
+  display: flex;
+  gap: 28px;
 `;

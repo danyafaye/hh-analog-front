@@ -7,6 +7,8 @@ import { InputProps } from '@components/Input/Input';
 export const Input = styled.input<Partial<InputProps>>`
   background-color: ${COLORS.$WHITE_100};
   color: ${COLORS.$BLACK_100};
+  font-weight: 500;
+  font-size: 16px;
   ${(props) => {
     if (props.icon) {
       return css`
@@ -26,9 +28,8 @@ export const Input = styled.input<Partial<InputProps>>`
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
-  color: ${COLORS.$PRIMARY_ORANGE};
-
-  font-size: 24px;
+  color: ${COLORS.$SECONDARY_GRAY};
+  font-size: 18px;
   gap: 5px;
   width: 100%;
 `;
@@ -37,9 +38,7 @@ export const InputWrapper = styled.div`
   position: relative;
   padding: 4px 8px;
   height: 100%;
-  width: 100%
-  
-  max-width: 200px;
+  width: 100%;
   border: 2px solid black;
   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 1);
   display: flex;

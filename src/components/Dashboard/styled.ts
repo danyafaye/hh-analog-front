@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 36px 20px;
+  padding: 36px 40px;
 `;
 
 export const Header = styled.header`
@@ -14,15 +14,20 @@ export const Header = styled.header`
   font-weight: 500;
 `;
 
-export const BlockContainer = styled.div<{ column?: boolean; noMargin?: boolean }>`
+export const BlockContainer = styled.div<{
+  column?: boolean;
+  noMargin?: boolean;
+  noOverflow?: boolean;
+}>`
   display: flex;
   gap: 20px;
   overflow-x: auto;
   overflow-y: hidden;
-  ${({ column, noMargin }) => {
+  ${({ column, noMargin, noOverflow }) => {
     return `
     flex-direction: ${column ? 'column' : 'row'};
     margin-bottom: ${noMargin ? '0px' : '36px'};
+    ${noOverflow && `overflow: inherit;`}
     `;
   }}
 `;
@@ -35,18 +40,23 @@ export const BlockContent = styled.div`
 
 export const ChartContainer = styled(BlockContainer)`
   flex-grow: 1;
+  overflow: inherit;
 `;
 
 export const ProfileWrapper = styled(BlockContainer)`
   display: grid;
-  grid-template-columns: 1fr 500px;
+  grid-template-columns: 1fr 400px;
   width: 100%;
+  margin: 0;
+  overflow: inherit;
 `;
 
 export const ProfileContainer = styled.div`
   grid-column-start: 2;
   grid-row-start: 1;
   grid-row-end: 3;
+  box-shadow: 5px 5px 0 0 ${COLORS.$SECONDARY_LIGHT_GRAY};
+  border: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
 `;
 
 export const ProfileContent = styled.div`
@@ -54,8 +64,7 @@ export const ProfileContent = styled.div`
   flex-direction: column;
   position: relative;
   height: 100%;
-  box-shadow: 5px 5px 0 0 ${COLORS.$SECONDARY_LIGHT_GRAY};
-  border: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
+
   padding: 28px 20px 20px;
   gap: 20px;
 `;
@@ -76,8 +85,8 @@ export const ProfileActionsContainer = styled(ProfileBlock)`
   right: 20px;
   height: 40px;
   position: absolute;
-  background: ${COLORS.$PRIMARY_LIGHT_GRAY};
   border: 1px solid ${COLORS.$PRIMARY_DARK_GRAY};
+  box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 1);
   padding: 0 8px;
   div {
     cursor: pointer;
@@ -121,7 +130,7 @@ export const ProfileLocationAddress = styled.div`
 export const ProfileTagsContainer = styled(ProfileBlock)`
   gap: 8px;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
 `;
 
 export const ProfileTag = styled.div`
@@ -149,7 +158,7 @@ export const ProfileLink = styled(Link)`
   padding: 0 10px;
   gap: 12px;
   height: 40px;
-  color: ${COLORS.$PRIMARY_GRAY};
-  background: ${COLORS.$PRIMARY_LIGHT_GRAY};
+  color: ${COLORS.$PRIMARY_DARK_GRAY};
   border: 1px solid ${COLORS.$PRIMARY_DARK_GRAY};
+  box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 1);
 `;

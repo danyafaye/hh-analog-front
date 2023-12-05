@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import { ButtonStyles, MainColors } from '@components/Button/Button.tsx';
+import { ButtonProps } from '@components/Button/Button.tsx';
 import { COLORS } from '@src/constants/styles.ts';
+import { motion } from 'framer-motion';
 
-export const ButtonWrapper = styled.button<{ styles: ButtonStyles; mainColor: MainColors }>`
+export const ButtonWrapper = styled(motion.button)<Partial<ButtonProps>>`
   padding: 8px 16px;
   display: flex;
   align-items: center;
@@ -22,6 +23,13 @@ export const ButtonWrapper = styled.button<{ styles: ButtonStyles; mainColor: Ma
         return `
           background-color: ${COLORS.$WHITE_100};
         `;
+      case 'text': {
+        return `
+          background: none;
+          border: none;
+          box-shadow: none;
+        `;
+      }
     }
   }}
 `;

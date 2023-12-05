@@ -54,10 +54,14 @@ const Dashboard: FC = () => {
           <ST.BlockContent>{renderCards}</ST.BlockContent>
         </ST.BlockContainer>
 
-        <ST.BlockContainer noMargin>
+        <ST.BlockContainer
+          noMargin
+          noOverflow
+        >
           <ST.BlockContainer
             column
             noMargin
+            noOverflow
           >
             <ST.Header>Отклики</ST.Header>
             <ST.BlockContent>

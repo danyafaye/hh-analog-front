@@ -72,7 +72,7 @@ export const Notifications = styled(NotificationSvg)`
   }
 `;
 
-export const Profile = styled(UserSvg)`
+export const Profile = styled(UserSvg)<{ isActive: boolean }>`
   cursor: pointer;
   path {
     fill: ${COLORS.$BLACK_100};
@@ -83,4 +83,11 @@ export const Profile = styled(UserSvg)`
       fill: ${COLORS.$PRIMARY_ORANGE};
     }
   }
+  ${({ isActive }) =>
+    isActive &&
+    `
+    path {
+      fill: ${COLORS.$PRIMARY_ORANGE};
+    }
+    `}
 `;
