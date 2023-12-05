@@ -12,8 +12,8 @@ export const IconsWrapper = styled.div<{ size?: IconsSize }>`
         `;
       case 'md':
         return `
-          height: 25px;
-          width: 25px;
+          height: 24px;
+          width: 24px;
         `;
     }
   }}

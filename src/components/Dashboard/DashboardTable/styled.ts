@@ -4,7 +4,7 @@ import { FeedbackStatus } from '@components/Dashboard/mockData.ts';
 
 export const Wrapper = styled.div`
   height: 360px;
-  width: 780px;
+  width: 700px;
   box-shadow: 5px 5px 0 0 ${COLORS.$SECONDARY_LIGHT_GRAY};
   border: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
   overflow-y: auto;
@@ -31,7 +31,6 @@ export const Row = styled.div`
   grid-template-columns: 1.3fr 1fr 1fr 1fr;
   padding: 12px 20px;
   background: ${COLORS.$PRIMARY_LIGHT_GRAY};
-  height: fit-content;
   &:nth-child(2n) {
     background: transparent;
   }

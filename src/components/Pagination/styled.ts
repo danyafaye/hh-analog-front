@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import { COLORS } from '@src/constants/styles.ts';
 
 export const ContentWrapper = styled.div`
-  margin-top: 20px;
-  padding-block: 20px;
+  padding-block: 16px;
   position: sticky;
   bottom: 0;
   background-color: ${COLORS.$WHITE_100};
@@ -16,31 +15,37 @@ export const Content = styled.div`
   justify-content: center;
   gap: 12px;
   margin-inline: auto;
-`
+  width: fit-content;
+  background: ${COLORS.$PRIMARY_LIGHT_GRAY};
+  color: ${COLORS.$PRIMARY_GRAY};
+  padding: 7px;
+  box-shadow: 4px 2px 0 0 ${COLORS.$SECONDARY_LIGHT_GRAY};
+`;
 
 export const PagesContainer = styled.div`
   display: flex;
   place-items: center;
   gap: 8px;
-`
+`;
 
-export const PageButton = styled.button<{ isActive: boolean }>`
-  border-radius: 8px;
-  font-size: 14px;
+export const PageButton = styled.button<{ isActive?: boolean }>`
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
+  width: 32px;
   height: 32px;
+  padding: 4px 8px;
   background-color: transparent;
-  color: ${COLORS.$SECONDARY_GRAY};
+  color: ${COLORS.$PRIMARY_GRAY};
   ${({ isActive }) =>
     isActive &&
     `
-      background-color: ${COLORS.$BLACK_100};
-      color: ${COLORS.$WHITE_100};
+    background-color: ${COLORS.$PRIMARY_DARK_GRAY};
+    color: white;
+    box-shadow: 2px 2px 0px 0px ${COLORS.$SECONDARY_DARK_GRAY};
     `}
-`
+`;
 
 export const Delimiter = styled.span`
   color: ${COLORS.$SECONDARY_GRAY};
@@ -49,4 +54,4 @@ export const Delimiter = styled.span`
   justify-content: center;
   width: 44px;
   height: 32px;
-`
+`;

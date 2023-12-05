@@ -4,8 +4,7 @@ export const Wrapper = styled.div`
   height: 100%;
 `;
 
-export const Content = styled.form`
-  padding: 28px 20px;
+export const ContentForm = styled.form`
   display: flex;
   row-gap: 20px;
   flex-direction: column;
@@ -93,4 +92,12 @@ export const SalaryFilters = styled.div`
 export const FilterButtonsWrapper = styled.div`
   display: flex;
   column-gap: 12px;
+`;
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  padding: 20px 40px;
+  flex-grow: 1;
 `;

@@ -5,7 +5,7 @@ import { IconsType } from '@src/constants/iconsDictionary.ts';
 import { Icon } from '@components/Icon/Icon.tsx';
 import { COLORS } from '@src/constants/styles.ts';
 
-export type ButtonStyles = 'default' | 'unFilled';
+export type ButtonStyles = 'default' | 'unFilled' | 'text';
 export type MainColors = COLORS.$PRIMARY_ORANGE | COLORS.$SECONDARY_RED;
 
 export type ButtonProps = {
@@ -29,6 +29,8 @@ const Button: FC<ButtonProps> = ({
       styles={styles}
       onClick={onClickHandler}
       mainColor={mainColor}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
       {...restProps}
     >
       {renderIcon && (

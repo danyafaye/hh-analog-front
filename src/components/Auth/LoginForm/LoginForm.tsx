@@ -6,6 +6,7 @@ import { Input } from '@components/Input';
 import { Button } from '@components/Button';
 
 import * as ST from '../styled';
+import { BottomWrapper } from '../styled';
 
 type LoginFormType = {
   toggleRegistration: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -52,17 +53,18 @@ const LoginForm: FC<LoginFormType> = ({ toggleRegistration }) => {
           {loginForm.errors && <div style={{ color: 'red' }}>{loginForm.errors.password}</div>}
         </div>
       </ST.ControlWrapper>
-      <ST.ControlWrapper>
+      <ST.BottomWrapper>
         <Button
           type="submit"
           text="Войти"
         />
         <Button
+          styles="unFilled"
           onClick={toggleRegistration}
           text="Ещё не зарегистрированы?"
           type="button"
         />
-      </ST.ControlWrapper>
+      </ST.BottomWrapper>
     </ST.AuthForm>
   );
 };

@@ -3,15 +3,15 @@ import { FC } from 'react';
 import * as ST from './styled.ts';
 import { LINKS } from '@src/links';
 import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const Header: FC = () => {
   const { pathname } = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const redirectAuth = () => {
-    navigate(LINKS.auth)
-  }
+    navigate(LINKS.auth);
+  };
 
   return (
     <ST.Wrapper>
@@ -39,7 +39,10 @@ const Header: FC = () => {
       <ST.NavMenu>
         <ST.Favorites />
         <ST.Notifications />
-        <ST.Profile onClick={redirectAuth}/>
+        <ST.Profile
+          isActive={pathname === LINKS.auth}
+          onClick={redirectAuth}
+        />
       </ST.NavMenu>
     </ST.Wrapper>
   );
