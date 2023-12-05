@@ -1,3 +1,5 @@
+import { FeedbackStatus } from '@components/Dashboard/mockData.ts';
+
 const THOUSAND_SEPARATOR_REGEXP = /\B(?=(\d{3})+(?!\d))/g;
 const numberSpacing = (number: number | string = ''): string => {
   return number.toString().replace(THOUSAND_SEPARATOR_REGEXP, ' ');
@@ -15,4 +17,17 @@ const getPriceString = (pricesArray: string[]) => {
   }
 };
 
-export { numberSpacing, getPriceString };
+const getStatusString = (status: FeedbackStatus) => {
+  switch (status) {
+    case 'invited':
+      return 'Приглашение';
+    case 'rejected':
+      return 'Отказ';
+    case 'viewed':
+      return 'Просмотрено';
+    case 'notViewed':
+      return 'Не просмотрено';
+  }
+};
+
+export { numberSpacing, getPriceString, getStatusString };

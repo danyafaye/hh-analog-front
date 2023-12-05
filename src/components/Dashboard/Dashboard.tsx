@@ -1,172 +1,117 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useMemo } from 'react';
 
 import * as ST from './styled.ts';
-import { mockData } from '@components/Main/mockData.ts';
-import { Button } from '@components/Button';
-import { Select } from '@components/Select/index.ts';
-import { InputNumber } from '@components/InputNumber';
-import { BlocksLine } from 'src/components/BlocksLine';
-import { useVacanciesContext } from '@src/providers/VacanciesProvider';
 import { MainCard } from '@components/MainCard';
-import { useFormik } from 'formik';
-import { SelectOptions } from '@components/Select/Select.tsx';
+import { mockData as vacanticesMockData } from '@components/Main/mockData.ts';
+import { mockData as dashboardMockData } from '@components/Dashboard/mockData.ts';
+import { Icon } from '@components/Icon/Icon.tsx';
+import DashboardTable from '@components/Dashboard/DashboardTable/DashboardTable.tsx';
+import DashboardChart from '@components/Dashboard/DashboardChart/DashboardChart.tsx';
 
 const Dashboard: FC = () => {
-  //TODO: хуевый адаптив я совсем забыл про него, нужно проработать
-  //TODO: подумать над тем чтобы вынести все что связано со шрифтами в константы
-
-  const vacanciesForm = useFormik({
-    initialValues: {
-      sortFilterOption: null as SelectOptions | null,
-      timeFilterOption: null as SelectOptions | null,
-      scheduleOption: null as SelectOptions | null,
-      employmentTypeOption: null as SelectOptions | null,
-      experienceOption: null as SelectOptions | null,
-      educationOption: null as SelectOptions | null,
-      regionOption: null as SelectOptions | null,
-      gradeOption: null as SelectOptions | null,
-      priceLow: 0,
-      priceHigh: 0,
-    },
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
-
-  const {
-    sortFilterOptions,
-    timeFilterOptions,
-    employmentTypeOptions,
-    educationOptions,
-    experienceOptions,
-    scheduleOptions,
-    regionOptions,
-    gradeOptions,
-    isFiltersWrapped,
-    changeFilterWrap,
-  } = useVacanciesContext();
-
-  const onPageElements = ['8', '50', '150', '200'];
-
-  const [onPageElement, setOnPageElement] = useState(onPageElements[0]);
+  const userInfo = dashboardMockData.info;
 
   const renderCards = useMemo(
     () =>
-      mockData.map((it) => {
-        return <MainCard cardData={it} />;
+      vacanticesMockData.map((it) => {
+        return (
+          <MainCard
+            cardData={it}
+            size={'sm'}
+          />
+        );
       }),
-    [mockData],
+    [vacanticesMockData],
   );
 
-  console.log(vacanciesForm.values);
+  const renderProfileTags = useMemo(
+    () => dashboardMockData.tags.map((it) => <ST.ProfileTag>{it}</ST.ProfileTag>),
+    [dashboardMockData],
+  );
+
+  const renderProfileLinks = useMemo(
+    () =>
+      dashboardMockData.links.map((it) => (
+        <ST.ProfileLink to={it.link}>
+          <Icon
+            size="md"
+            type={it.icon}
+          />
+          {it.text}
+        </ST.ProfileLink>
+      )),
+    [dashboardMockData],
+  );
 
   return (
     <ST.Wrapper>
-      <ST.ContentWrapper>
-        <ST.Content onSubmit={vacanciesForm.handleSubmit}>
-          <ST.ContentTitleWrapper>
-            <ST.ContentTitle>Вакансий</ST.ContentTitle>
-            <ST.ContentCount>160</ST.ContentCount>
-          </ST.ContentTitleWrapper>
-          <ST.ContentFilters>
-            <ST.FiltersWrapper>
-              <Select
-                defaultValue={sortFilterOptions[0]}
-                options={sortFilterOptions}
+      <ST.ProfileWrapper>
+        <ST.BlockContainer
+          column
+          noMargin
+        >
+          <ST.Header>Вакансии для вас</ST.Header>
+          <ST.BlockContent>{renderCards}</ST.BlockContent>
+        </ST.BlockContainer>
+
+        <ST.BlockContainer noMargin>
+          <ST.BlockContainer
+            column
+            noMargin
+          >
+            <ST.Header>Отклики</ST.Header>
+            <ST.BlockContent>
+              <DashboardTable data={dashboardMockData.feedback} />
+            </ST.BlockContent>
+          </ST.BlockContainer>
+          <ST.ChartContainer
+            column
+            noMargin
+          >
+            <ST.Header>Просмотры профиля</ST.Header>
+            <ST.BlockContent>
+              <DashboardChart data={dashboardMockData.views} />
+            </ST.BlockContent>
+          </ST.ChartContainer>
+        </ST.BlockContainer>
+
+        <ST.ProfileContainer>
+          <ST.ProfileContent>
+            <ST.ProfileActionsContainer>
+              <Icon
+                size="md"
+                type={'edit'}
               />
-              <Select
-                options={timeFilterOptions}
-                defaultValue={timeFilterOptions[0]}
+              <Icon
+                size="md"
+                type={'delete'}
               />
-              <Button
-                onClickHandler={changeFilterWrap}
-                text="Доп. фильтры"
-                styles={isFiltersWrapped ? 'unFilled' : 'default'}
-                renderIcon="filter"
+            </ST.ProfileActionsContainer>
+            <ST.ProfileBlock>
+              <ST.ProfileAvatar
+                src={userInfo.avatar}
+                loading={'lazy'}
               />
-            </ST.FiltersWrapper>
-            <ST.FiltersPagination>
-              <>На странице</>
-              <BlocksLine
-                onClickHandler={setOnPageElement}
-                value={onPageElement}
-                valuesArray={onPageElements}
-              />
-            </ST.FiltersPagination>
-          </ST.ContentFilters>
-          <ST.FiltersLine isWrapped={isFiltersWrapped}>
-            <ST.UpperFiltersWrapper>
-              <ST.SelectFilters>
-                <Select
-                  options={scheduleOptions}
-                  placeholder="График работы"
-                  value={vacanciesForm.values.scheduleOption}
-                  onChange={(option) => vacanciesForm.setFieldValue('scheduleOption', option)}
+            </ST.ProfileBlock>
+            <ST.ProfileBlock column>
+              <ST.ProfileName>{userInfo.name}</ST.ProfileName>
+              <ST.ProfileAge>{userInfo.age}</ST.ProfileAge>
+              <ST.ProfileBirthday>{userInfo.birthdayDate}</ST.ProfileBirthday>
+            </ST.ProfileBlock>
+            <ST.ProfileBlock>
+              <ST.ProfileLocationContainer>
+                <Icon
+                  size="md"
+                  type={'address'}
                 />
-                <Select
-                  options={employmentTypeOptions}
-                  placeholder="Тип занятости"
-                  value={vacanciesForm.values.employmentTypeOption}
-                  onChange={(option) => vacanciesForm.setFieldValue('employmentTypeOption', option)}
-                />
-                <Select
-                  options={experienceOptions}
-                  placeholder="Опыт работы"
-                  value={vacanciesForm.values.experienceOption}
-                  onChange={(option) => vacanciesForm.setFieldValue('experienceOption', option)}
-                />
-                <Select
-                  options={educationOptions}
-                  placeholder="Образование"
-                  value={vacanciesForm.values.educationOption}
-                  onChange={(option) => vacanciesForm.setFieldValue('educationOption', option)}
-                />
-                <Select
-                  options={regionOptions}
-                  placeholder="Регион"
-                  value={vacanciesForm.values.regionOption}
-                  onChange={(option) => vacanciesForm.setFieldValue('regionOption', option)}
-                />
-                {/*//TODO: запилить стороннюю апишку для подсоса регионов (или влад сделает набор городов которые мы засунем сюда)*/}
-                <Select
-                  options={gradeOptions}
-                  placeholder="Квалификация"
-                  value={vacanciesForm.values.gradeOption}
-                  onChange={(option) => vacanciesForm.setFieldValue('gradeOption', option)}
-                />
-              </ST.SelectFilters>
-              <ST.SalaryFilters>
-                <InputNumber
-                  name="priceLow"
-                  onChange={vacanciesForm.handleChange}
-                  value={vacanciesForm.values.priceLow}
-                  placeholder="Нижняя граница ЗП"
-                />
-                <InputNumber
-                  name="priceHigh"
-                  onChange={vacanciesForm.handleChange}
-                  value={vacanciesForm.values.priceHigh}
-                  placeholder="Верхняя граница ЗП"
-                />
-              </ST.SalaryFilters>
-            </ST.UpperFiltersWrapper>
-            <ST.FilterButtonsWrapper>
-              <Button
-                onClickHandler={() => {}}
-                text="Применить"
-                type="submit"
-              />
-              <Button
-                onClickHandler={() => {}}
-                text="Сбросить"
-                styles="unFilled"
-                renderIcon="refresh"
-              />
-            </ST.FilterButtonsWrapper>
-          </ST.FiltersLine>
-          <ST.ContentCards>{renderCards}</ST.ContentCards>
-        </ST.Content>
-      </ST.ContentWrapper>
+                <ST.ProfileLocationAddress>{userInfo.address}</ST.ProfileLocationAddress>
+              </ST.ProfileLocationContainer>
+            </ST.ProfileBlock>
+            <ST.ProfileTagsContainer>{renderProfileTags}</ST.ProfileTagsContainer>
+            <ST.ProfileFooter>{renderProfileLinks}</ST.ProfileFooter>
+          </ST.ProfileContent>
+        </ST.ProfileContainer>
+      </ST.ProfileWrapper>
     </ST.Wrapper>
   );
 };
