@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { COLORS } from '@src/constants/styles.ts';
 import { iconsDictionary } from '@src/constants/iconsDictionary.ts';
+import { CardSize } from '@components/MainCard/MainCard.tsx';
 
 export const Line = styled.hr`
   height: 2px;
@@ -15,13 +16,24 @@ export const CardContentHeader = styled.div`
   row-gap: 20px;
 `;
 
-export const CardContentTags = styled.div`
+export const CardContentTags = styled.div<{ size: CardSize }>`
   display: flex;
   align-items: flex-start;
   align-content: flex-start;
   gap: 8px;
   align-self: stretch;
-  flex-wrap: wrap;
+  ${({ size }) => {
+    switch (size) {
+      case 'sm':
+        return `
+          flex-wrap: nowrap;
+        `;
+      case 'md':
+        return `
+          flex-wrap: wrap;
+        `;
+    }
+  }}
 `;
 
 export const CardTag = styled.div`
@@ -34,6 +46,7 @@ export const CardTag = styled.div`
   background-color: ${COLORS.$SECONDARY_GREEN};
   box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 1);
   font-size: 14px;
+  white-space: nowrap;
 `;
 
 export const CardWidgets = styled.div`
@@ -42,9 +55,19 @@ export const CardWidgets = styled.div`
   align-items: center;
 `;
 
-export const CardName = styled.div`
+export const CardName = styled.div<{ size: CardSize }>`
   font-size: 20px;
   font-weight: 700;
+  ${({ size }) => {
+    switch (size) {
+      case 'sm':
+        return `
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        `;
+    }
+  }}
 `;
 
 export const CardDate = styled.div`
@@ -98,27 +121,63 @@ export const CardSubjectCity = styled.div`
   font-size: 14px;
 `;
 
-export const CardWrapper = styled.div`
+export const CardWrapper = styled.div<{ size: CardSize }>`
   display: flex;
   flex-direction: column;
-  min-height: 351px;
   box-shadow: 5px 5px 0 0 ${COLORS.$SECONDARY_LIGHT_GRAY};
   border: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
+  overflow: hidden;
+  ${({ size }) => {
+    switch (size) {
+      case 'sm':
+        return `
+          min-width: 382px;
+        `;
+      case 'md':
+        return `
+          min-height: 351px;
+        `;
+    }
+  }}
 `;
 
-export const CardContentWrapper = styled.div`
+export const CardContentWrapper = styled.div<{ size: CardSize }>`
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  padding: 20px;
-  row-gap: 20px;
   justify-content: space-between;
+  ${({ size }) => {
+    switch (size) {
+      case 'sm':
+        return `
+          padding: 10px;
+          row-gap: 10px;
+        `;
+      case 'md':
+        return `
+          padding: 20px;
+          row-gap: 20px;
+        `;
+    }
+  }}
 `;
 
-export const CardFooterWrapper = styled.div`
+export const CardFooterWrapper = styled.div<{ size: CardSize }>`
   display: flex;
-  padding: 20px;
   flex-direction: column;
-  row-gap: 20px;
   border-radius: 0 0 4px 4px;
+  ${({ size }) => {
+    switch (size) {
+      case 'sm':
+        return `
+          padding: 10px;
+          row-gap: 10px;
+        `;
+      case 'md':
+        return `
+          padding: 20px;
+          row-gap: 20px;
+        `;
+    }
+  }}
 `;

@@ -30,12 +30,16 @@ export const BlockContainer = styled.div<{ column?: boolean; noMargin?: boolean 
 export const BlockContent = styled.div`
   display: flex;
   gap: 16px;
+  height: 100%;
+`;
+
+export const ChartContainer = styled(BlockContainer)`
+  flex-grow: 1;
 `;
 
 export const ProfileWrapper = styled(BlockContainer)`
   display: grid;
   grid-template-columns: 1fr 500px;
-  grid-template-rows: repeat(2, 1fr);
   width: 100%;
 `;
 

@@ -3,21 +3,44 @@ import { FC, useMemo } from 'react';
 import * as ST from './styled.ts';
 import { MainCard } from '@components/MainCard';
 import { mockData as vacanticesMockData } from '@components/Main/mockData.ts';
-import { mockData as profileMockData } from '@components/Dashboard/mockData.ts';
+import { mockData as dashboardMockData } from '@components/Dashboard/mockData.ts';
 import { Icon } from '@components/Icon/Icon.tsx';
+import DashboardTable from '@components/Dashboard/DashboardTable/DashboardTable.tsx';
+import DashboardChart from '@components/Dashboard/DashboardChart/DashboardChart.tsx';
 
 const Dashboard: FC = () => {
+  const userInfo = dashboardMockData.info;
+
   const renderCards = useMemo(
     () =>
       vacanticesMockData.map((it) => {
-        return <MainCard cardData={it} />;
+        return (
+          <MainCard
+            cardData={it}
+            size={'sm'}
+          />
+        );
       }),
     [vacanticesMockData],
   );
 
   const renderProfileTags = useMemo(
-    () => profileMockData.tags.map((it) => <ST.ProfileTag>{it}</ST.ProfileTag>),
-    [profileMockData],
+    () => dashboardMockData.tags.map((it) => <ST.ProfileTag>{it}</ST.ProfileTag>),
+    [dashboardMockData],
+  );
+
+  const renderProfileLinks = useMemo(
+    () =>
+      dashboardMockData.links.map((it) => (
+        <ST.ProfileLink to={it.link}>
+          <Icon
+            size="md"
+            type={it.icon}
+          />
+          {it.text}
+        </ST.ProfileLink>
+      )),
+    [dashboardMockData],
   );
 
   return (
@@ -31,7 +54,26 @@ const Dashboard: FC = () => {
           <ST.BlockContent>{renderCards}</ST.BlockContent>
         </ST.BlockContainer>
 
-        <ST.BlockContainer noMargin>Графика и хуйня</ST.BlockContainer>
+        <ST.BlockContainer noMargin>
+          <ST.BlockContainer
+            column
+            noMargin
+          >
+            <ST.Header>Отклики</ST.Header>
+            <ST.BlockContent>
+              <DashboardTable data={dashboardMockData.feedback} />
+            </ST.BlockContent>
+          </ST.BlockContainer>
+          <ST.ChartContainer
+            column
+            noMargin
+          >
+            <ST.Header>Просмотры профиля</ST.Header>
+            <ST.BlockContent>
+              <DashboardChart data={dashboardMockData.views} />
+            </ST.BlockContent>
+          </ST.ChartContainer>
+        </ST.BlockContainer>
 
         <ST.ProfileContainer>
           <ST.ProfileContent>
@@ -47,15 +89,14 @@ const Dashboard: FC = () => {
             </ST.ProfileActionsContainer>
             <ST.ProfileBlock>
               <ST.ProfileAvatar
-                src={
-                  'https://www.figma.com/file/u3WM9IFfg4LqD4Dfpq3wnY/image/aa73e64136fab335d1d3c2f26ec09d713e6e84f6'
-                }
+                src={userInfo.avatar}
+                loading={'lazy'}
               />
             </ST.ProfileBlock>
             <ST.ProfileBlock column>
-              <ST.ProfileName>Петр Петрович</ST.ProfileName>
-              <ST.ProfileAge>20 лет</ST.ProfileAge>
-              <ST.ProfileBirthday>01.11.2003</ST.ProfileBirthday>
+              <ST.ProfileName>{userInfo.name}</ST.ProfileName>
+              <ST.ProfileAge>{userInfo.age}</ST.ProfileAge>
+              <ST.ProfileBirthday>{userInfo.birthdayDate}</ST.ProfileBirthday>
             </ST.ProfileBlock>
             <ST.ProfileBlock>
               <ST.ProfileLocationContainer>
@@ -63,31 +104,11 @@ const Dashboard: FC = () => {
                   size="md"
                   type={'address'}
                 />
-                <ST.ProfileLocationAddress>Россия, Москва</ST.ProfileLocationAddress>
+                <ST.ProfileLocationAddress>{userInfo.address}</ST.ProfileLocationAddress>
               </ST.ProfileLocationContainer>
             </ST.ProfileBlock>
             <ST.ProfileTagsContainer>{renderProfileTags}</ST.ProfileTagsContainer>
-            <ST.ProfileFooter>
-              <ST.ProfileLink to={'/'}>
-                <Icon
-                  size="md"
-                  type={'telegram'}
-                />
-                @petr762008
-              </ST.ProfileLink>
-              <ST.ProfileLink to={'/'}>
-                <Icon
-                  size="md"
-                  type={'github'}
-                />
-              </ST.ProfileLink>
-              <ST.ProfileLink to={'/'}>
-                <Icon
-                  size="md"
-                  type={'google'}
-                />
-              </ST.ProfileLink>
-            </ST.ProfileFooter>
+            <ST.ProfileFooter>{renderProfileLinks}</ST.ProfileFooter>
           </ST.ProfileContent>
         </ST.ProfileContainer>
       </ST.ProfileWrapper>
