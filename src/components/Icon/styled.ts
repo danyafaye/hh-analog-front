@@ -10,6 +10,11 @@ export const IconsWrapper = styled.div<{ size?: IconsSize }>`
           height: 16px;
           width: 16px;
         `;
+      case 'md':
+        return `
+          height: 25px;
+          width: 25px;
+        `;
     }
   }}
 `;
