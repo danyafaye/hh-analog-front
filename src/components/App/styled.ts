@@ -75,4 +75,5 @@ export const AppWrapper = styled.div`
   height: calc(100% - 70px);
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 `;

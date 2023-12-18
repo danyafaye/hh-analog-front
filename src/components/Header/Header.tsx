@@ -9,13 +9,16 @@ const Header: FC = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const redirectAuth = () => {
-    navigate(LINKS.auth);
+  const redirectToPage = (link: string) => {
+    navigate(link);
   };
 
   return (
     <ST.Wrapper>
-      <ST.Logo />
+      <ST.Logo
+        active={pathname === LINKS.welcome}
+        onClick={() => redirectToPage(LINKS.welcome)}
+      />
       <ST.NavMenu>
         <ST.Link
           to={LINKS.dashboard}
@@ -24,8 +27,8 @@ const Header: FC = () => {
           Дашборд
         </ST.Link>
         <ST.Link
-          to={LINKS.home}
-          active={pathname === LINKS.home}
+          to={LINKS.vacancies}
+          active={pathname === LINKS.vacancies}
         >
           Вакансии
         </ST.Link>
@@ -37,11 +40,11 @@ const Header: FC = () => {
         </ST.Link>
       </ST.NavMenu>
       <ST.NavMenu>
-        <ST.Favorites />
+        <ST.Favorites onClick={() => redirectToPage(`${LINKS.dashboard}#favorites`)} />
         <ST.Notifications />
         <ST.Profile
           isActive={pathname === LINKS.auth}
-          onClick={redirectAuth}
+          onClick={() => redirectToPage(LINKS.auth)}
         />
       </ST.NavMenu>
     </ST.Wrapper>
