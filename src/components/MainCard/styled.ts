@@ -3,11 +3,22 @@ import { COLORS } from '@src/constants/styles.ts';
 import { iconsDictionary } from '@src/constants/iconsDictionary.ts';
 import { CardSize } from '@components/MainCard/MainCard.tsx';
 
-export const Line = styled.hr`
+export const Line = styled.hr<{ size: CardSize }>`
   height: 2px;
   background: ${COLORS.$SECONDARY_GRAY};
   margin: 0 auto;
-  width: 90%;
+  ${({ size }) => {
+    switch (size) {
+      case 'sm':
+        return `
+          width: calc(100% - 20px);
+        `;
+      case 'md':
+        return `
+          width: calc(100% - 40px);
+        `;
+    }
+  }}
 `;
 
 export const CardContentHeader = styled.div`
@@ -26,7 +37,7 @@ export const CardContentTags = styled.div<{ size: CardSize }>`
     switch (size) {
       case 'sm':
         return `
-          flex-wrap: nowrap;
+          flex-wrap: wrap;
         `;
       case 'md':
         return `
@@ -180,4 +191,12 @@ export const CardFooterWrapper = styled.div<{ size: CardSize }>`
         `;
     }
   }}
+`;
+
+export const CardActions = styled.div`
+  display: flex;
+  column-gap: 16px;
+  div {
+    cursor: pointer;
+  }
 `;

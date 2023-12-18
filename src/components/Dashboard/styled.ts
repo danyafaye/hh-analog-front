@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   height: 100%;
   padding: 36px 40px;
+  row-gap: 20px;
 `;
 
 export const Header = styled.header`
@@ -36,6 +37,7 @@ export const BlockContent = styled.div`
   display: flex;
   gap: 16px;
   height: 100%;
+  padding-bottom: 32px;
 `;
 
 export const ChartContainer = styled(BlockContainer)`
@@ -161,4 +163,30 @@ export const ProfileLink = styled(Link)`
   color: ${COLORS.$PRIMARY_DARK_GRAY};
   border: 1px solid ${COLORS.$PRIMARY_DARK_GRAY};
   box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 1);
+`;
+
+export const ResumeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  row-gap: 20px;
+`;
+
+export const FavoritesVacanciesWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+`;
+
+export const FavoritesVacancies = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 382px);
+  gap: 16px;
+  margin-bottom: 20px;
+`;
+
+export const ResponseWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
 `;

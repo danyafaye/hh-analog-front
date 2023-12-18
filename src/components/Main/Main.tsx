@@ -19,7 +19,7 @@ interface IMainProps {
   content: IMainContent;
 }
 
-const Main: FC = ({ page, content }: IMainProps) => {
+const Main: FC<IMainProps> = ({ page, content }) => {
   //TODO: хуевый адаптив я совсем забыл про него, нужно проработать
   //TODO: подумать над тем чтобы вынести все что связано со шрифтами в константы
   const {
@@ -76,6 +76,7 @@ const Main: FC = ({ page, content }: IMainProps) => {
         <MainCard
           key={it.id}
           cardData={it}
+          editableCard={false}
         />
       );
     });

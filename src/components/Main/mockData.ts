@@ -14,7 +14,7 @@ type CompanyCardProps = CardProps & {
 
 type ResumeCardProps = CardProps & {
   fullName: string;
-}
+};
 
 const mockData: CompanyCardProps[] = [
   {
@@ -115,9 +115,9 @@ const resumeMockData: ResumeCardProps[] = [
     createdAt: '24.10.23',
     favorite: false,
     cardName: 'Middle/Senior Backend разработчик (Python)',
-    cardTags: ['Middle', 'Senior', 'Опыт: 3-6 лет', 'Удаленная работа', 'Полная занятость'],
+    cardTags: ['Senior', 'Опыт: 3-6 лет', 'Удаленная работа', 'Полная занятость'],
     cardPrice: ['180000', ''],
-    fullName: 'Иванов А. А.',
+    fullName: 'Петров П. П.',
     city: 'Москва',
   },
   {
@@ -1102,5 +1102,5 @@ const resumeMockData: ResumeCardProps[] = [
   },
 ];
 
-export { mockData, resumeMockData};
+export { mockData, resumeMockData };
 export type { CardProps, CompanyCardProps, ResumeCardProps };

@@ -16,10 +16,25 @@ export const Wrapper = styled.header`
   border-bottom: 2px solid black;
 `;
 
-export const Logo = styled(LogoSvg)`
+export const Logo = styled(LogoSvg)<{ active: boolean }>`
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
   path {
     fill: ${COLORS.$BLACK_100};
   }
+  &:hover {
+    transform: scale(1.035);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+  ${({ active }) =>
+    active &&
+    `
+      path {
+    fill: ${COLORS.$PRIMARY_ORANGE};
+  }
+  `}
 `;
 
 export const NavMenu = styled.div`

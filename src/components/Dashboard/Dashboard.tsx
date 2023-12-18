@@ -1,15 +1,35 @@
-import { FC, useMemo } from 'react';
+import { FC, useEffect, useMemo, useRef } from 'react';
 
 import * as ST from './styled.ts';
 import { MainCard } from '@components/MainCard';
-import { mockData as vacanticesMockData } from '@components/Main/mockData.ts';
+import { mockData as vacanticesMockData, resumeMockData } from '@components/Main/mockData.ts';
 import { mockData as dashboardMockData } from '@components/Dashboard/mockData.ts';
 import { Icon } from '@components/Icon/Icon.tsx';
 import DashboardTable from '@components/Dashboard/DashboardTable/DashboardTable.tsx';
 import DashboardChart from '@components/Dashboard/DashboardChart/DashboardChart.tsx';
+import { useLocation } from 'react-router-dom';
+import { ResponsesChart } from '@components/Dashboard/ResponsesChart/ResponsesChart.tsx';
 
 const Dashboard: FC = () => {
   const userInfo = dashboardMockData.info;
+
+  const myResumeMock = resumeMockData[1];
+
+  const favoritesVacancies = vacanticesMockData.filter((i) => i.favorite);
+
+  const location = useLocation();
+
+  const myRef = useRef<null | HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (myRef && location.hash.includes('#favorites')) {
+      myRef?.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'center',
+      });
+    }
+  }, [myRef, location.hash]);
 
   const renderCards = useMemo(
     () =>
@@ -18,6 +38,7 @@ const Dashboard: FC = () => {
           <MainCard
             cardData={it}
             size={'sm'}
+            editableCard={false}
           />
         );
       }),
@@ -64,18 +85,14 @@ const Dashboard: FC = () => {
             noOverflow
           >
             <ST.Header>Отклики</ST.Header>
-            <ST.BlockContent>
-              <DashboardTable data={dashboardMockData.feedback} />
-            </ST.BlockContent>
+            <DashboardTable data={dashboardMockData.feedback} />
           </ST.BlockContainer>
           <ST.ChartContainer
             column
             noMargin
           >
             <ST.Header>Просмотры профиля</ST.Header>
-            <ST.BlockContent>
-              <DashboardChart data={dashboardMockData.views} />
-            </ST.BlockContent>
+            <DashboardChart data={dashboardMockData.views} />
           </ST.ChartContainer>
         </ST.BlockContainer>
 
@@ -116,6 +133,29 @@ const Dashboard: FC = () => {
           </ST.ProfileContent>
         </ST.ProfileContainer>
       </ST.ProfileWrapper>
+      <ST.ResponseWrapper>
+        <ST.Header>Статистика откликов</ST.Header>
+        <ResponsesChart />
+      </ST.ResponseWrapper>
+      <ST.ResumeWrapper>
+        <ST.Header>Ваши резюме</ST.Header>
+        <MainCard
+          cardData={myResumeMock}
+          editableCard
+        />
+      </ST.ResumeWrapper>
+      <ST.FavoritesVacanciesWrapper>
+        <ST.Header>Избранные вакансии</ST.Header>
+        <ST.FavoritesVacancies ref={myRef}>
+          {favoritesVacancies.map((it) => (
+            <MainCard
+              editableCard={false}
+              key={it.id}
+              cardData={it}
+            />
+          ))}
+        </ST.FavoritesVacancies>
+      </ST.FavoritesVacanciesWrapper>
     </ST.Wrapper>
   );
 };
