@@ -63,10 +63,12 @@ const MainCard: FC<MainCardProps> = ({ cardData, size = 'md', editableCard }) =>
             </ST.CardSubjectName>
             <ST.CardSubjectCity>{cardData.city}</ST.CardSubjectCity>
           </ST.CardSubjectWrapper>
-          <Button
-            onClickHandler={() => {}}
-            text={'companyName' in cardData ? 'Отклик' : 'Пригласить'}
-          />
+          {!editableCard && (
+            <Button
+              onClickHandler={() => {}}
+              text={'companyName' in cardData ? 'Отклик' : 'Пригласить'}
+            />
+          )}
         </ST.CardFooterInfo>
       </ST.CardFooterWrapper>
     </ST.CardWrapper>
