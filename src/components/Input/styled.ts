@@ -6,6 +6,7 @@ import { InputProps } from '@components/Input/Input';
 
 export const Input = styled.input<Partial<InputProps>>`
   background-color: ${COLORS.$WHITE_100};
+  flex: 1;
   color: ${COLORS.$BLACK_100};
   font-weight: 500;
   font-size: 16px;

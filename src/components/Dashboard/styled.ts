@@ -8,6 +8,9 @@ export const Wrapper = styled.div`
   height: 100%;
   padding: 36px 40px;
   row-gap: 20px;
+  @media(max-width: 576px) {
+    padding-inline: 16px;
+  }
 `;
 
 export const Header = styled.header`
@@ -33,6 +36,17 @@ export const BlockContainer = styled.div<{
   }}
 `;
 
+export const BlockContainerMyStat = styled(BlockContainer)`
+  @media(max-width: 1440px) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  @media(max-width: 768px) {
+    flex-wrap: wrap;
+    grid-column: 1;
+  }
+`;
+
 export const BlockContent = styled.div`
   display: flex;
   gap: 16px;
@@ -51,6 +65,12 @@ export const ProfileWrapper = styled(BlockContainer)`
   width: 100%;
   margin: 0;
   overflow: inherit;
+  @media(max-width: 1440px) {
+    grid-template-columns: 1fr 2fr;
+  }
+  @media(max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const ProfileContainer = styled.div`
@@ -59,6 +79,10 @@ export const ProfileContainer = styled.div`
   grid-row-end: 3;
   box-shadow: 5px 5px 0 0 ${COLORS.$SECONDARY_LIGHT_GRAY};
   border: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
+  @media(max-width: 1440px) {
+    grid-column: 1;
+    grid-row: 1;
+  }
 `;
 
 export const ProfileContent = styled.div`
@@ -180,7 +204,7 @@ export const FavoritesVacanciesWrapper = styled.div`
 
 export const FavoritesVacancies = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, 382px);
+  grid-template-columns: repeat(auto-fill, minmax(350px,1fr));
   gap: 16px;
   margin-bottom: 20px;
 `;

@@ -3,9 +3,12 @@ import { COLORS } from '@src/constants/styles.ts';
 
 import LogoSvg from '@assets/icons/union.svg?react';
 import FavoritesSvg from '@assets/icons/favorites.svg?react';
+import BurgerSvg from '@assets/icons/burger.svg?react';
+import CloseSvg from '@assets/icons/close.svg?react';
 import NotificationSvg from '@assets/icons/notification.svg?react';
 import UserSvg from '@assets/icons/user.svg?react';
 import { NavLink } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export const Wrapper = styled.header`
   display: flex;
@@ -40,6 +43,9 @@ export const Logo = styled(LogoSvg)<{ active: boolean }>`
 export const NavMenu = styled.div`
   display: flex;
   column-gap: 18px;
+  @media(max-width: 576px) {
+    display: none;
+  }
 `;
 export const Link = styled(NavLink)<{ active?: boolean }>`
   background: none;
@@ -74,6 +80,38 @@ export const Favorites = styled(FavoritesSvg)`
   }
 `;
 
+export const Burger = styled(BurgerSvg)`
+  cursor: pointer;
+  path {
+    stroke: ${COLORS.$BLACK_100};
+    transition: stroke 0.2s ease-in-out;
+  }
+  &:hover {
+    path {
+      stroke: ${COLORS.$PRIMARY_ORANGE};
+    }
+  }
+  display: none;
+  @media(max-width: 576px) {
+    display: block;
+  }
+`;
+
+export const Close = styled(CloseSvg)`
+  cursor: pointer;
+  path {
+    stroke: ${COLORS.$BLACK_100};
+    transition: stroke 0.2s ease-in-out;
+  }
+  &:hover {
+    path {
+      stroke: ${COLORS.$PRIMARY_ORANGE};
+    }
+  }
+  position: relative;
+  z-index: 2;
+`;
+
 export const Notifications = styled(NotificationSvg)`
   cursor: pointer;
   path {
@@ -105,4 +143,35 @@ export const Profile = styled(UserSvg)<{ isActive: boolean }>`
       fill: ${COLORS.$PRIMARY_ORANGE};
     }
     `}
+`;
+
+export const SideMenuBack = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  width: 100%;
+  overflow: clip;
+  z-index: 1;
+`;
+
+export const SideMenu = styled(motion.div)`
+  position: fixed;
+  right: 0;
+  top: 70px;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 36px;
+  gap: 12px;
+  align-items: end;
+  z-index: 2;
+  background-color: ${COLORS.$WHITE_100};
+  border-left:  2px solid black;
+`;
+
+export const SideMenuFlex = styled(motion.div)`
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
 `;

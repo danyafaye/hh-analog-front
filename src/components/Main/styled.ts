@@ -37,20 +37,22 @@ export const ContentCount = styled.div`
 
 export const ContentCards = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, 382px);
+  grid-template-columns: repeat(auto-fill, minmax(320px,382px));
   gap: 16px;
 `;
 
 export const ContentFilters = styled.div`
   display: flex;
   align-items: center;
-  column-gap: 12px;
+  gap: 12px;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 export const FiltersWrapper = styled.div`
   display: flex;
-  column-gap: 12px;
+  flex-wrap: wrap;
+  gap: 12px;
 `;
 
 export const FiltersPagination = styled.div`
@@ -77,11 +79,15 @@ export const FiltersLine = styled.div<{ isWrapped: boolean }>`
 export const UpperFiltersWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: start;
 `;
 
 export const SelectFilters = styled.div`
   display: flex;
-  column-gap: 12px;
+  flex-wrap: wrap;
+  gap: 12px;
 `;
 
 export const SalaryFilters = styled.div`
@@ -100,4 +106,7 @@ export const Content = styled.div`
   row-gap: 16px;
   padding: 20px 40px;
   flex-grow: 1;
+  @media(max-width: 480px){
+    padding-inline: 16px;
+  }
 `;

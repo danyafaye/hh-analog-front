@@ -4,7 +4,8 @@ import { FeedbackStatus } from '@components/Dashboard/mockData.ts';
 
 export const Wrapper = styled.div`
   height: 360px;
-  width: 700px;
+  max-width: 700px;
+  min-width: 320px;
   box-shadow: 5px 5px 0 0 ${COLORS.$SECONDARY_LIGHT_GRAY};
   border: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
   overflow-y: auto;
@@ -34,6 +35,9 @@ export const Row = styled.div`
   &:nth-child(2n) {
     background: transparent;
   }
+  @media(max-width: 576px) {
+    padding-inline: 8px;
+  }
 `;
 
 export const Column = styled.div`
@@ -43,9 +47,14 @@ export const Column = styled.div`
   align-items: flex-start;
   gap: 4px;
   padding-right: 20px;
-
+  @media(max-width: 576px) {
+    padding-right: 4px;
+  }
   &:not(&:first-child) {
     padding: 0 12px;
+    @media(max-width: 576px) {
+      padding-inline: 8px;
+    }
   }
 `;
 

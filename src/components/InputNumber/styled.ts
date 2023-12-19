@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const InputWrapper = styled.div`
   padding: 0 8px;
+  min-height: 38px;
   height: 100%;
   max-width: 200px;
   border: 2px solid black;
