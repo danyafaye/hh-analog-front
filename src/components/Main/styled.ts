@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { COLORS } from '@src/constants/styles.ts';
+import { motion } from 'framer-motion';
 export const Wrapper = styled.div`
   height: 100%;
 `;
@@ -37,7 +38,7 @@ export const ContentCount = styled.div`
 
 export const ContentCards = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px,382px));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 382px));
   gap: 16px;
 `;
 
@@ -61,19 +62,15 @@ export const FiltersPagination = styled.div`
   align-items: center;
 `;
 
-export const FiltersLine = styled.div<{ isWrapped: boolean }>`
+export const FiltersLine = styled(motion.div)`
   display: flex;
   flex-direction: column;
+  overflow: clip;
   gap: 16px;
   justify-content: space-between;
   box-shadow: 4px 4px 0 0 ${COLORS.$SECONDARY_LIGHT_GRAY};
   border: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
   padding: 16px;
-  ${({ isWrapped }) =>
-    isWrapped &&
-    `
-      display: none;
-    `}
 `;
 
 export const UpperFiltersWrapper = styled.div`
@@ -106,7 +103,7 @@ export const Content = styled.div`
   row-gap: 16px;
   padding: 20px 40px;
   flex-grow: 1;
-  @media(max-width: 480px){
+  @media (max-width: 480px) {
     padding-inline: 16px;
   }
 `;

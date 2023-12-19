@@ -145,12 +145,13 @@ export const SideMenu = styled(motion.div)`
   position: fixed;
   right: 0;
   top: 70px;
-  height: 100dvh;
+  height: calc(100dvh - 70px);
   display: flex;
   flex-direction: column;
   padding: 12px 36px;
   gap: 12px;
   align-items: end;
+  justify-content: space-between;
   z-index: 2;
   background-color: ${COLORS.$WHITE_100};
   border-left: 2px solid black;
@@ -160,4 +161,15 @@ export const SideMenuFlex = styled(motion.div)`
   display: flex;
   align-items: baseline;
   gap: 16px;
+`;
+
+export const SideMenuGif = styled.img`
+  width: 100%;
+  max-width: 160px;
+`;
+
+export const SideMenuContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 `;

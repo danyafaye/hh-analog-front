@@ -210,6 +210,7 @@ export const CompaniesBottom = styled.div`
   grid-template-columns: 350px 1fr;
   padding: 0 0 32px;
   margin: 40px;
+  min-height: 220px;
   gap: 32px;
   position: relative;
   max-width: 1200px;
@@ -224,6 +225,7 @@ export const CompaniesBottom = styled.div`
 
 export const CompaniesDesc = styled.div`
   grid-column: 2;
+  font-size: clamp(14px, 5vw, 18px);
   @media (max-width: 768px) {
     grid-column: 1;
   }

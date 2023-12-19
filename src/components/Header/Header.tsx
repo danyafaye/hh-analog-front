@@ -5,6 +5,7 @@ import { LINKS } from '@src/links';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import AnimationGif from '@assets/images/SiuNo.gif';
 
 const Header: FC = () => {
   const { pathname } = useLocation();
@@ -63,42 +64,45 @@ const Header: FC = () => {
               exit={{ opacity: 0, translateX: '100%' }}
               transition={{ duration: 0.5 }}
             >
-              <ST.Link
-                to={LINKS.dashboard}
-                active={pathname === LINKS.dashboard}
-                onClick={() => setOpenBurger(false)}
-              >
-                Дашборд
-              </ST.Link>
-              <ST.Link
-                to={LINKS.vacancies}
-                active={pathname === LINKS.vacancies}
-                onClick={() => setOpenBurger(false)}
-              >
-                Вакансии
-              </ST.Link>
-              <ST.Link
-                to={LINKS.resume}
-                active={pathname === LINKS.resume}
-                onClick={() => setOpenBurger(false)}
-              >
-                Резюме
-              </ST.Link>
-              <ST.SideMenuFlex>
-                <ST.Favorites
-                  onClick={() => {
-                    setOpenBurger(false);
-                    redirectToPage(`${LINKS.dashboard}#favorites`);
-                  }}
-                />
-                <ST.Profile
-                  isActive={pathname === LINKS.auth}
-                  onClick={() => {
-                    setOpenBurger(false);
-                    redirectToPage(LINKS.auth);
-                  }}
-                />
-              </ST.SideMenuFlex>
+              <ST.SideMenuContent>
+                <ST.Link
+                  to={LINKS.dashboard}
+                  active={pathname === LINKS.dashboard}
+                  onClick={() => setOpenBurger(false)}
+                >
+                  Дашборд
+                </ST.Link>
+                <ST.Link
+                  to={LINKS.vacancies}
+                  active={pathname === LINKS.vacancies}
+                  onClick={() => setOpenBurger(false)}
+                >
+                  Вакансии
+                </ST.Link>
+                <ST.Link
+                  to={LINKS.resume}
+                  active={pathname === LINKS.resume}
+                  onClick={() => setOpenBurger(false)}
+                >
+                  Резюме
+                </ST.Link>
+                <ST.SideMenuFlex>
+                  <ST.Favorites
+                    onClick={() => {
+                      setOpenBurger(false);
+                      redirectToPage(`${LINKS.dashboard}#favorites`);
+                    }}
+                  />
+                  <ST.Profile
+                    isActive={pathname === LINKS.auth}
+                    onClick={() => {
+                      setOpenBurger(false);
+                      redirectToPage(LINKS.auth);
+                    }}
+                  />
+                </ST.SideMenuFlex>
+              </ST.SideMenuContent>
+              <ST.SideMenuGif src={AnimationGif} />
             </ST.SideMenu>
           </>
         )}

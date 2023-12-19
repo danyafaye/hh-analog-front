@@ -13,6 +13,7 @@ import { SelectOptions } from '@components/Select/Select.tsx';
 import { IMainContent, mainPageType } from '@src/constants/common';
 import { useFilterParams } from '@hooks/useFilterParams';
 import { Pagination } from '@components/Pagination';
+import { AnimatePresence } from 'framer-motion';
 
 interface IMainProps {
   page: mainPageType;
@@ -120,80 +121,90 @@ const Main: FC<IMainProps> = ({ page, content }) => {
                 />
               </ST.FiltersPagination>
             </ST.ContentFilters>
-            <ST.FiltersLine isWrapped={isFiltersWrapped}>
-              <ST.UpperFiltersWrapper>
-                <ST.SelectFilters>
-                  <Select
-                    options={scheduleOptions}
-                    placeholder="График работы"
-                    value={form.values.scheduleOption}
-                    onChange={(option) => form.setFieldValue('scheduleOption', option)}
-                  />
-                  <Select
-                    options={employmentTypeOptions}
-                    placeholder="Тип занятости"
-                    value={form.values.employmentTypeOption}
-                    onChange={(option) => form.setFieldValue('employmentTypeOption', option)}
-                  />
-                  <Select
-                    options={experienceOptions}
-                    placeholder="Опыт работы"
-                    value={form.values.experienceOption}
-                    onChange={(option) => form.setFieldValue('experienceOption', option)}
-                  />
-                  <Select
-                    options={educationOptions}
-                    placeholder="Образование"
-                    value={form.values.educationOption}
-                    onChange={(option) => form.setFieldValue('educationOption', option)}
-                  />
-                  <Select
-                    options={regionOptions}
-                    placeholder="Регион"
-                    value={form.values.regionOption}
-                    onChange={(option) => form.setFieldValue('regionOption', option)}
-                  />
-                  {/*//TODO: запилить стороннюю апишку для подсоса регионов (или влад сделает набор городов которые мы засунем сюда)*/}
-                  <Select
-                    options={gradeOptions}
-                    placeholder="Квалификация"
-                    value={form.values.gradeOption}
-                    onChange={(option) => form.setFieldValue('gradeOption', option)}
-                  />
-                </ST.SelectFilters>
-                <ST.SalaryFilters>
-                  <InputNumber
-                    name="priceLow"
-                    onChange={form.handleChange}
-                    value={form.values.priceLow}
-                    placeholder="Нижняя граница ЗП"
-                  />
-                  <InputNumber
-                    name="priceHigh"
-                    onChange={form.handleChange}
-                    value={form.values.priceHigh}
-                    placeholder="Верхняя граница ЗП"
-                  />
-                </ST.SalaryFilters>
-              </ST.UpperFiltersWrapper>
-              <ST.FilterButtonsWrapper>
-                <Button
-                  onClickHandler={() => {}}
-                  text="Применить"
-                  type="submit"
-                />
-                <Button
-                  onClickHandler={() => {
-                    setFilterParams(null);
-                    form.resetForm();
-                  }}
-                  type={'reset'}
-                  text="Сбросить"
-                  styles="unFilled"
-                  renderIcon="refresh"
-                />
-              </ST.FilterButtonsWrapper>
-            </ST.FiltersLine>
+            <AnimatePresence>
+              {!isFiltersWrapped && (
+                <ST.FiltersLine
+                  key="filters-line"
+                  initial={{ opacity: 0, scaleY: 0 }}
+                  animate={{ opacity: 1, scaleY: 1 }}
+                  exit={{ opacity: 0, scaleY: 0 }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                >
+                  <ST.UpperFiltersWrapper>
+                    <ST.SelectFilters>
+                      <Select
+                        options={scheduleOptions}
+                        placeholder="График работы"
+                        value={form.values.scheduleOption}
+                        onChange={(option) => form.setFieldValue('scheduleOption', option)}
+                      />
+                      <Select
+                        options={employmentTypeOptions}
+                        placeholder="Тип занятости"
+                        value={form.values.employmentTypeOption}
+                        onChange={(option) => form.setFieldValue('employmentTypeOption', option)}
+                      />
+                      <Select
+                        options={experienceOptions}
+                        placeholder="Опыт работы"
+                        value={form.values.experienceOption}
+                        onChange={(option) => form.setFieldValue('experienceOption', option)}
+                      />
+                      <Select
+                        options={educationOptions}
+                        placeholder="Образование"
+                        value={form.values.educationOption}
+                        onChange={(option) => form.setFieldValue('educationOption', option)}
+                      />
+                      <Select
+                        options={regionOptions}
+                        placeholder="Регион"
+                        value={form.values.regionOption}
+                        onChange={(option) => form.setFieldValue('regionOption', option)}
+                      />
+                      {/*//TODO: запилить стороннюю апишку для подсоса регионов (или влад сделает набор городов которые мы засунем сюда)*/}
+                      <Select
+                        options={gradeOptions}
+                        placeholder="Квалификация"
+                        value={form.values.gradeOption}
+                        onChange={(option) => form.setFieldValue('gradeOption', option)}
+                      />
+                    </ST.SelectFilters>
+                    <ST.SalaryFilters>
+                      <InputNumber
+                        name="priceLow"
+                        onChange={form.handleChange}
+                        value={form.values.priceLow}
+                        placeholder="Нижняя граница ЗП"
+                      />
+                      <InputNumber
+                        name="priceHigh"
+                        onChange={form.handleChange}
+                        value={form.values.priceHigh}
+                        placeholder="Верхняя граница ЗП"
+                      />
+                    </ST.SalaryFilters>
+                  </ST.UpperFiltersWrapper>
+                  <ST.FilterButtonsWrapper>
+                    <Button
+                      onClickHandler={() => {}}
+                      text="Применить"
+                      type="submit"
+                    />
+                    <Button
+                      onClickHandler={() => {
+                        setFilterParams(null);
+                        form.resetForm();
+                      }}
+                      type={'reset'}
+                      text="Сбросить"
+                      styles="unFilled"
+                      renderIcon="refresh"
+                    />
+                  </ST.FilterButtonsWrapper>
+                </ST.FiltersLine>
+              )}
+            </AnimatePresence>
           </ST.ContentForm>
           <ST.ContentCards>{renderCards}</ST.ContentCards>
         </ST.Content>
