@@ -81,5 +81,5 @@
       "version": "detect"
     }
   },
-  "ignorePatterns": ["config-overrides.js", "index.html"]
+  "ignorePatterns": ["config-overrides.js", "public/index.html"]
 }
