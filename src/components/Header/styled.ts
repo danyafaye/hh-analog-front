@@ -5,7 +5,6 @@ import LogoSvg from '@assets/icons/union.svg?react';
 import FavoritesSvg from '@assets/icons/favorites.svg?react';
 import BurgerSvg from '@assets/icons/burger.svg?react';
 import CloseSvg from '@assets/icons/close.svg?react';
-import NotificationSvg from '@assets/icons/notification.svg?react';
 import UserSvg from '@assets/icons/user.svg?react';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -43,7 +42,7 @@ export const Logo = styled(LogoSvg)<{ active: boolean }>`
 export const NavMenu = styled.div`
   display: flex;
   column-gap: 18px;
-  @media(max-width: 576px) {
+  @media (max-width: 576px) {
     display: none;
   }
 `;
@@ -92,7 +91,7 @@ export const Burger = styled(BurgerSvg)`
     }
   }
   display: none;
-  @media(max-width: 576px) {
+  @media (max-width: 576px) {
     display: block;
   }
 `;
@@ -110,19 +109,6 @@ export const Close = styled(CloseSvg)`
   }
   position: relative;
   z-index: 2;
-`;
-
-export const Notifications = styled(NotificationSvg)`
-  cursor: pointer;
-  path {
-    fill: ${COLORS.$BLACK_100};
-    transition: fill 0.2s ease-in-out;
-  }
-  &:hover {
-    path {
-      fill: ${COLORS.$PRIMARY_ORANGE};
-    }
-  }
 `;
 
 export const Profile = styled(UserSvg)<{ isActive: boolean }>`
@@ -167,7 +153,7 @@ export const SideMenu = styled(motion.div)`
   align-items: end;
   z-index: 2;
   background-color: ${COLORS.$WHITE_100};
-  border-left:  2px solid black;
+  border-left: 2px solid black;
 `;
 
 export const SideMenuFlex = styled(motion.div)`
