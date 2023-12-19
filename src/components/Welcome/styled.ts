@@ -116,6 +116,7 @@ export const Slogan = styled.div`
 `;
 export const SloganDescription = styled.div`
   text-wrap: balance;
+  font-size: clamp(14px, 5vw, 18px);
 `;
 
 export const SloganButtonWrapper = styled.div`
@@ -241,6 +242,7 @@ export const DeveloperUpper = styled.div`
   font-weight: 700;
   font-size: clamp(32px, 5vw, 48px);
   text-wrap: balance;
+  text-align: center;
 `;
 
 export const DeveloperContent = styled.div`

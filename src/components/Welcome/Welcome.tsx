@@ -31,21 +31,24 @@ const Welcome: FC = () => {
                 В поиске работы мечты или ищите идеального кандидата на вашу должность?
               </ST.Slogan>
               <ST.SloganDescription>
-                Наше приложение — мост между вашими профессиональными целями и их реализацией. Найдите
-                идеальную работу или самого подходящего кандидата с легкостью благодаря умным
-                фильтрам, персонализированным рекомендациям и интуитивно понятному интерфейсу. Ваша
-                карьера заслуживает самого лучшего — доверьте свой поиск нам.
+                Наше приложение — мост между вашими профессиональными целями и их реализацией.
+                Найдите идеальную работу или самого подходящего кандидата с легкостью благодаря
+                умным фильтрам, персонализированным рекомендациям и интуитивно понятному интерфейсу.
+                Ваша карьера заслуживает самого лучшего — доверьте свой поиск нам.
               </ST.SloganDescription>
-              <ST.Buttons><ST.SloganButtonWrapper>
-                <Button
-                  styles='unFilled'
-                  text='Найти работу'
-                  onClick={() => redirectToPage(LINKS.vacancies)}
-                />
-              </ST.SloganButtonWrapper>
+              <ST.Buttons>
                 <ST.SloganButtonWrapper>
                   <Button
-                    text='К поиску кандидата'
+                    fontSize="md"
+                    styles="unFilled"
+                    text="Найти работу"
+                    onClick={() => redirectToPage(LINKS.vacancies)}
+                  />
+                </ST.SloganButtonWrapper>
+                <ST.SloganButtonWrapper>
+                  <Button
+                    fontSize="md"
+                    text="К поиску кандидата"
                     onClick={() => redirectToPage(LINKS.resume)}
                   />
                 </ST.SloganButtonWrapper>
@@ -81,15 +84,16 @@ const Welcome: FC = () => {
           </ST.CompaniesUpper>
           <ST.CompaniesBottom>
             <ST.ConnectingImage src={connecting} />
-            <ST.CompaniesDesc>Наше приложение - это мост между работодателем и соискателем, где обе стороны могут
+            <ST.CompaniesDesc>
+              Наше приложение - это мост между работодателем и соискателем, где обе стороны могут
               найти идеальное сочетание для успешного сотрудничества. Для работодателей мы
-              предоставляем удобный инструмент для поиска высококвалифицированных кандидатов, позволяя
-              экономить время и ресурсы благодаря точным фильтрам и персонализированным рекомендациям.
-              А соискателям мы помогаем найти работу своей мечты, предоставляя доступ к многочисленным
-              вакансиям, анализу требований рынка труда и возможности поднять свой профессиональный
-              уровень. Наше приложение - это не просто платформа, это инструмент для создания
-              совершенного партнерства между работодателем и соискателем, где каждая сторона находит
-              то, что ищет.
+              предоставляем удобный инструмент для поиска высококвалифицированных кандидатов,
+              позволяя экономить время и ресурсы благодаря точным фильтрам и персонализированным
+              рекомендациям. А соискателям мы помогаем найти работу своей мечты, предоставляя доступ
+              к многочисленным вакансиям, анализу требований рынка труда и возможности поднять свой
+              профессиональный уровень. Наше приложение - это не просто платформа, это инструмент
+              для создания совершенного партнерства между работодателем и соискателем, где каждая
+              сторона находит то, что ищет.
             </ST.CompaniesDesc>
           </ST.CompaniesBottom>
         </ST.CompaniesWrapper>
@@ -99,49 +103,49 @@ const Welcome: FC = () => {
           </ST.DeveloperUpper>
           <ST.DeveloperContent>
             <ST.DeveloperBlock
-              angle='8'
-              color='#5ac08e'
-              xPixels='60'
-              yPixels='-15'
-              initial={{ opacity: 0}}
-              whileInView={{ opacity: 1}}
-              transition={{ duration: .3, ease: 'easeInOut' }}
+              angle="8"
+              color="#5ac08e"
+              xPixels="60"
+              yPixels="-15"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
               <ST.PencilIcon />
               <ST.DeveloperText>UI/UX ДИЗАЙН</ST.DeveloperText>
             </ST.DeveloperBlock>
             <ST.DeveloperBlock
-              angle='-8'
-              color='#f9d84b'
-              xPixels='20'
-              yPixels='0'
-              initial={{ opacity: 0}}
-              whileInView={{ opacity: 1}}
-              transition={{ duration: .3, ease: 'easeInOut', delay: .3}}
+              angle="-8"
+              color="#f9d84b"
+              xPixels="20"
+              yPixels="0"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.3, ease: 'easeInOut', delay: 0.3 }}
             >
               <ST.CodeIcon />
               <ST.DeveloperText>РАЗРАБОТКА</ST.DeveloperText>
             </ST.DeveloperBlock>
             <ST.DeveloperBlock
-              angle='8'
-              color='#e36f40'
-              xPixels='-20'
-              yPixels='0'
-              initial={{ opacity: 0}}
-              whileInView={{ opacity: 1}}
-              transition={{ duration: .3, ease: 'easeInOut', delay: .6}}
+              angle="8"
+              color="#e36f40"
+              xPixels="-20"
+              yPixels="0"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.3, ease: 'easeInOut', delay: 0.6 }}
             >
               <ST.StickIcon />
               <ST.DeveloperText>МАРКЕТИНГ</ST.DeveloperText>
             </ST.DeveloperBlock>
             <ST.DeveloperBlock
-              angle='-8'
-              color='#8cd7fe'
-              xPixels='-60'
-              yPixels='-15'
-              initial={{ opacity: 0}}
-              whileInView={{ opacity: 1}}
-              transition={{ duration: .3, ease: 'easeInOut', delay: .9}}
+              angle="-8"
+              color="#8cd7fe"
+              xPixels="-60"
+              yPixels="-15"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.3, ease: 'easeInOut', delay: 0.9 }}
             >
               <ST.PenIcon />
               <ST.DeveloperText>ИЛЛЮСТРАЦИЯ</ST.DeveloperText>
@@ -163,9 +167,11 @@ const Welcome: FC = () => {
           </ST.ShortDescription>
         </ST.ShortDescriptionLine>
         <ST.LongDescriptionWrapper>
-          <ST.LongDescriptionContainer initial={{ opacity: 0, translateX: '-100%' }}
-                                       whileInView={{ opacity: 1, translateX: 0 }}
-                                       transition={{ duration: .8, ease: 'easeInOut' }}>
+          <ST.LongDescriptionContainer
+            initial={{ opacity: 0, translateX: '-100%' }}
+            whileInView={{ opacity: 1, translateX: 0 }}
+            transition={{ duration: 0.8, ease: 'easeInOut' }}
+          >
             <ST.LongDescriptionScreen src={dashboardScreen} />
             <ST.LongDescriptionText>
               <ST.LongDescriptionTitle>ИЗУЧАЙТЕ ДАШБОРД</ST.LongDescriptionTitle>
@@ -175,9 +181,11 @@ const Welcome: FC = () => {
               </ST.LongDescriptionInfo>
             </ST.LongDescriptionText>
           </ST.LongDescriptionContainer>
-          <ST.LongDescriptionContainerRight initial={{ opacity: 0, translateX: '100%' }}
-                                            whileInView={{ opacity: 1, translateX: 0 }}
-                                            transition={{ duration: .8, ease: 'easeInOut' }}>
+          <ST.LongDescriptionContainerRight
+            initial={{ opacity: 0, translateX: '100%' }}
+            whileInView={{ opacity: 1, translateX: 0 }}
+            transition={{ duration: 0.8, ease: 'easeInOut' }}
+          >
             <ST.LongDescriptionTextRight>
               <ST.LongDescriptionTitle>ПРОСМАТРИВАЙТЕ ВАКАНСИИ</ST.LongDescriptionTitle>
               <ST.LongDescriptionInfo>
@@ -187,9 +195,11 @@ const Welcome: FC = () => {
             </ST.LongDescriptionTextRight>
             <ST.LongDescriptionScreen src={vacanciesScreen} />
           </ST.LongDescriptionContainerRight>
-          <ST.LongDescriptionContainer initial={{ opacity: 0, translateX: '-100%' }}
-                                       whileInView={{ opacity: 1, translateX: 0 }}
-                                       transition={{ duration: .8, ease: 'easeInOut' }}>
+          <ST.LongDescriptionContainer
+            initial={{ opacity: 0, translateX: '-100%' }}
+            whileInView={{ opacity: 1, translateX: 0 }}
+            transition={{ duration: 0.8, ease: 'easeInOut' }}
+          >
             <ST.LongDescriptionScreen src={resumeScreen} />
             <ST.LongDescriptionText>
               <ST.LongDescriptionTitle>ПРОСМАТРИВАЙТЕ РЕЗЮМЕ</ST.LongDescriptionTitle>

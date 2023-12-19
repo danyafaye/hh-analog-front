@@ -7,6 +7,7 @@ import { COLORS } from '@src/constants/styles.ts';
 
 export type ButtonStyles = 'default' | 'unFilled' | 'text';
 export type MainColors = COLORS.$PRIMARY_ORANGE | COLORS.$SECONDARY_RED;
+export type ButtonFontSizes = 'sm' | 'md';
 
 export type ButtonProps = {
   text: string;
@@ -14,6 +15,7 @@ export type ButtonProps = {
   onClickHandler?: () => void;
   styles?: ButtonStyles;
   mainColor?: MainColors;
+  fontSize?: ButtonFontSizes;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button: FC<ButtonProps> = ({
@@ -22,11 +24,13 @@ const Button: FC<ButtonProps> = ({
   onClickHandler,
   styles = 'default',
   mainColor = COLORS.$PRIMARY_ORANGE,
+  fontSize = 'sm',
   ...restProps
 }) => {
   return (
     <ST.ButtonWrapper
       styles={styles}
+      fontSize={fontSize}
       onClick={onClickHandler}
       mainColor={mainColor}
       whileTap={{ scale: 0.95 }}

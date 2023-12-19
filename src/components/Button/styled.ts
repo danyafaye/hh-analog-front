@@ -7,7 +7,7 @@ export const ButtonWrapper = styled(motion.button)<Partial<ButtonProps>>`
   padding: 8px 16px;
   display: flex;
   align-items: center;
-  font-size: 14px;
+  white-space: pre;
   column-gap: 8px;
   border: 2px solid black;
   border-radius: 4px;
@@ -30,6 +30,14 @@ export const ButtonWrapper = styled(motion.button)<Partial<ButtonProps>>`
           box-shadow: none;
         `;
       }
+    }
+  }}
+  ${({ fontSize }) => {
+    switch (fontSize) {
+      case 'md':
+        return `font-size: clamp(14px, 5vw, 18px);`;
+      case 'sm':
+        return `font-size: 14px;`;
     }
   }}
 `;
