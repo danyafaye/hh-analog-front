@@ -15,13 +15,17 @@ export const AuthPageWrapper = styled.div`
 export const AuthForm = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 55px;
+  padding: 48px;
   gap: 64px;
   overflow-y: auto;
+  min-width: 320px;
   width: 40%;
   background-color: ${COLORS.$WHITE_100};
   box-shadow: 5px 5px 0 0 ${COLORS.$SECONDARY_LIGHT_GRAY};
   border: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
+  @media(max-width: 1024px) {
+    padding-inline: 16px;
+  }
 `;
 
 export const ControlWrapper = styled.div`

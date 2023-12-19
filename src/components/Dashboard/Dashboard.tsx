@@ -75,7 +75,7 @@ const Dashboard: FC = () => {
           <ST.BlockContent>{renderCards}</ST.BlockContent>
         </ST.BlockContainer>
 
-        <ST.BlockContainer
+        <ST.BlockContainerMyStat
           noMargin
           noOverflow
         >
@@ -94,7 +94,7 @@ const Dashboard: FC = () => {
             <ST.Header>Просмотры профиля</ST.Header>
             <DashboardChart data={dashboardMockData.views} />
           </ST.ChartContainer>
-        </ST.BlockContainer>
+        </ST.BlockContainerMyStat>
 
         <ST.ProfileContainer>
           <ST.ProfileContent>

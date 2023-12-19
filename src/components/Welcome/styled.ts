@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { motion } from 'framer-motion';
 import { COLORS } from '@src/constants/styles.ts';
 import CodeIconSvg from '@assets/icons/codeIcon.svg?react';
 import PencilIconSvg from '@assets/icons/pencilIcon.svg?react';
@@ -17,6 +18,15 @@ const moveLeft = keyframes`
     transform: translate(-100%, 0);
   }
 `;
+
+const rotate = keyframes`
+  0% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(-5deg);
+  }
+`
 
 export const WelcomeWrapper = styled.div`
   height: 100%;
@@ -61,6 +71,9 @@ export const ContainerBlock = styled.div`
   row-gap: 16px;
   padding: 32px 40px;
   width: 100%;
+  @media(max-width: 480px){
+    padding-inline: 16px;
+  }
 `;
 
 export const ContainerBlockCopyright = styled(ContainerBlock)`
@@ -77,22 +90,42 @@ export const SloganWrapper = styled.div`
 
 export const SloganContentWrapper = styled.div`
   padding: 32px 40px;
+  display: grid;
+  overflow: clip;
+  grid-template-columns: 3fr 2fr;
+  @media(max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+  @media(max-width: 480px){
+    padding-inline: 16px;
+  }
+`;
+
+export const SloganMain = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+  flex: 1;
 `;
 
 export const Slogan = styled.div`
-  font-size: 56px;
+  font-size: clamp(32px,5vw,56px);
   font-weight: 700;
   text-transform: uppercase;
-  width: 80%;
+  text-wrap: balance;
 `;
 export const SloganDescription = styled.div`
-  width: 60%;
+  text-wrap: balance;
 `;
+
 export const SloganButtonWrapper = styled.div`
-  width: 180px;
+  max-width: 180px;
+`;
+
+export const Buttons = styled.div`
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
 `;
 
 export const LinePurple = styled.div`
@@ -116,10 +149,11 @@ export const WordBlock = styled.div`
 `;
 
 export const ImageWrapper = styled.img`
-  height: 100%;
-  bottom: 0;
-  right: 0;
-  position: absolute;
+  width: 100%;
+  max-width: 600px;
+  place-self: center;
+  transform-origin: bottom center;
+  animation: ${rotate} 2s ease-in-out alternate infinite;
 `;
 
 export const VideosWrapper = styled.div`
@@ -127,7 +161,7 @@ export const VideosWrapper = styled.div`
   border-bottom: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
   display: flex;
   justify-content: space-between;
-  column-gap: 36px;
+  column-gap: clamp(16px,4vw,36px);
   padding: 32px 40px;
 `;
 
@@ -144,7 +178,11 @@ export const DeveloperWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  row-gap: 124px;
+  row-gap: clamp(64px,8vw,124px);
+  @media(max-width: 480px){
+    padding-inline: 16px;
+    overflow: clip;
+  }
 `;
 
 export const CompaniesWrapper = styled.div`
@@ -158,33 +196,57 @@ export const CompaniesWrapper = styled.div`
 
 export const CompaniesUpper = styled.div`
   font-weight: 700;
-  font-size: 48px;
+  font-size: clamp(32px,5vw,48px);
   padding: 40px 40px 0;
   align-self: center;
+  text-wrap: balance;
+  @media(max-width: 480px){
+    padding-inline: 16px;
+  }
 `;
 
 export const CompaniesBottom = styled.div`
-  display: flex;
-  padding: 0 40px 32px;
-  column-gap: 32px;
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  padding: 0 0 32px;
+  margin: 40px;
+  gap: 32px;
   position: relative;
-  top: 75px;
-  width: 80%;
+  max-width: 1200px;
+  @media(max-width: 768px) {
+    grid-template-columns: 1fr;
+    place-items: center;
+  }
+  @media(max-width: 480px){
+    margin-inline: 16px;
+  }
+`;
+
+export const CompaniesDesc = styled.div`
+  grid-column: 2;
+  @media(max-width: 768px) {
+    grid-column: 1;
+  }
 `;
 
 export const StarParticle = styled.img`
-  width: 64px;
-  height: 96px;
+  aspect-ratio: 2/3;
+  width: clamp(32px,5vw,64px);
 `;
 
 export const DeveloperUpper = styled.div`
   color: ${COLORS.$WHITE_100};
   font-weight: 700;
-  font-size: 48px;
+  font-size: clamp(32px,5vw,48px);
+  text-wrap: balance;
 `;
 
 export const DeveloperContent = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4,auto);
+  @media(max-width: 1024px) {
+    grid-template-columns: repeat(2,auto);
+  }
 `;
 
 export const ConnectingImage = styled.img`
@@ -192,9 +254,17 @@ export const ConnectingImage = styled.img`
   border: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
   box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 1);
   height: 285px;
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  @media(max-width: 768px) {
+    position: initial;
+    grid-column: 1;
+  }
 `;
 
-export const DeveloperBlock = styled.div<{
+export const DeveloperBlock = styled(motion.div)<{
   color: string;
   angle: string;
   xPixels: string;
@@ -208,24 +278,28 @@ export const DeveloperBlock = styled.div<{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-size: 24px;
+  font-size: clamp(14px,4vw,24px);
   position: relative;
   ${({ color }) => `background: ${color}`};
   ${({ angle, xPixels, yPixels }) =>
-    `transform: rotateZ(${angle}) translateX(${xPixels}) translateY(${yPixels})`};
+    `transform: rotateZ(${angle}deg) translateX(${xPixels}px) translateY(${yPixels}px)`};
+  @media(max-width: 1024px) {
+    ${({ angle, xPixels, yPixels }) =>
+      `transform: rotateZ(${+angle/2}deg) translateX(${+xPixels/2}px) translateY(${+yPixels/2}px)`};
+  }
 `;
 
 export const CodeIcon = styled(CodeIconSvg)`
-  height: 72px;
+  height: clamp(36px,4vw,72px);
 `;
 export const PencilIcon = styled(PencilIconSvg)`
-  height: 72px;
+  height: clamp(36px,4vw,72px);
 `;
 export const PenIcon = styled(PenIconSvg)`
-  height: 72px;
+  height: clamp(36px,4vw,72px);
 `;
 export const StickIcon = styled(StickIconSvg)`
-  height: 72px;
+  height: clamp(36px,4vw,72px);
 `;
 
 export const DeveloperText = styled.span`
@@ -236,7 +310,7 @@ export const ShortDescriptionLine = styled.div`
   border-bottom: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
   padding: 24px 0;
   display: flex;
-  column-gap: 32px;
+  column-gap: clamp(16px,3vw,32px);
   overflow: hidden;
   justify-content: center;
 `;
@@ -244,22 +318,22 @@ export const ShortDescriptionLine = styled.div`
 export const ShortDescription = styled.div`
   display: flex;
   align-items: center;
-  column-gap: 16px;
+  column-gap: clamp(8px,3vw,16px);
 `;
 
 export const ShortDescriptionText = styled.span`
   font-weight: 600;
-  font-size: 24px;
+  font-size: clamp(16px,3vw,24px);
 `;
 
 export const DashboardIcon = styled(DashboardIconSvg)`
-  height: 34px;
+  height: clamp(24px,4vw,34px);
 `;
 export const VacancyIcon = styled(VacancyIconSvg)`
-  height: 34px;
+  height: clamp(24px,4vw,34px);
 `;
 export const ResumeIcon = styled(ResumeIconSvg)`
-  height: 34px;
+  height: clamp(24px,4vw,34px);
 `;
 
 export const LongDescriptionWrapper = styled.div`
@@ -268,23 +342,31 @@ export const LongDescriptionWrapper = styled.div`
   padding: 84px 40px;
   display: flex;
   flex-direction: column;
-  row-gap: 84px;
+  row-gap: clamp(64px,8vw,84px);
+  overflow: clip;
+  @media(max-width: 480px){
+    padding-inline: 16px;
+  }
 `;
 
 export const PreFooterWrapper = styled.div`
   background: #69d043;
   padding: 32px 40px;
   text-align: center;
+  @media(max-width: 480px){
+    padding-inline: 16px;
+  }
 `;
 
 export const PreFooterText = styled.span`
-  font-size: 144px;
+  font-size: clamp(48px,10vw,144px);
   font-weight: 800;
 `;
 
-export const LongDescriptionContainer = styled.div`
-  display: flex;
-  column-gap: 32px;
+export const LongDescriptionContainer = styled(motion.div)`
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+  column-gap: clamp(16px,4vw,32px);
   align-items: center;
 `;
 
@@ -293,7 +375,8 @@ export const LongDescriptionContainerRight = styled(LongDescriptionContainer)`
 `;
 
 export const LongDescriptionScreen = styled.img`
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
   border: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
   box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 1);
 `;
@@ -301,15 +384,17 @@ export const LongDescriptionScreen = styled.img`
 export const LongDescriptionText = styled.div`
   display: flex;
   flex-direction: column;
-  width: 40%;
 `;
 
 export const LongDescriptionTextRight = styled(LongDescriptionText)`
   text-align: end;
+  @media(max-width: 726px) {
+    grid-row: 2;
+  }
 `;
 
 export const LongDescriptionTitle = styled.span`
-  font-size: 48px;
+  font-size: clamp(32px,4vw,48px);
   font-weight: 800;
 `;
 

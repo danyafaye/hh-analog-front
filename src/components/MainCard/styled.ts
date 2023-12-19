@@ -138,6 +138,16 @@ export const CardWrapper = styled.div<{ size: CardSize }>`
   box-shadow: 5px 5px 0 0 ${COLORS.$SECONDARY_LIGHT_GRAY};
   border: 2px solid ${COLORS.$PRIMARY_DARK_GRAY};
   overflow: hidden;
+  @media(max-width: 576px) {
+    ${({ size }) => {
+      switch (size) {
+        case 'sm':
+          return `
+          min-width: 350px;
+        `
+      }
+    }}
+  }
   ${({ size }) => {
     switch (size) {
       case 'sm':
